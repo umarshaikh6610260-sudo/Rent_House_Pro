@@ -1,0 +1,303 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Properties · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="active" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Properties</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">Operations / <span>Properties</span></div>
+          <div class="page-head">
+            <div>
+              <h1>Properties</h1>
+              <p>
+                Manage buildings, units, occupancy and property-level finances
+              </p>
+            </div>
+            <div class="actions"></div>
+          </div>
+          <div class="breadcrumb">Operations / <span></span></div>
+          <div class="page-head">
+            <div>
+              <h1></h1>
+              <p></p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn"
+                onclick="toast('CSV export prepared', 'success')"
+              >
+                ⇩ Export</button
+              ><button class="btn primary" data-modal-open="#addProperty">
+                ＋ Add property
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-pad">
+              <div class="filters">
+                <div class="search">
+                  <span>⌕</span
+                  ><input
+                    data-search-table="#dataTable"
+                    placeholder="Search..."
+                  />
+                </div>
+                <select>
+                  <option>All statuses</option>
+                  <option>Active</option>
+                  <option>Pending</option>
+                  <option>Expired</option></select
+                ><select>
+                  <option>All properties</option>
+                  <option>Sunrise Heights</option>
+                  <option>Lakeview Residency</option>
+                </select>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="dataTable" data-sort-table>
+                  <thead>
+                    <tr>
+                      <th data-sort>Property</th>
+                      <th data-sort>Units</th>
+                      <th data-sort>Occupied</th>
+                      <th data-sort>Monthly rent</th>
+                      <th data-sort>Status</th>
+                      <th data-sort></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">SH</div>
+                          <div>
+                            <strong>Sunrise Heights</strong
+                            ><small>PR-1001 · Ahmedabad</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>96</td>
+                      <td>82</td>
+                      <td>₹24.8L</td>
+                      <td><span class="badge success">Active</span></td>
+                      <td>
+                        <button
+                          class="btn small"
+                          onclick="location.href = 'property-details.html'"
+                        >
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">LR</div>
+                          <div>
+                            <strong>Lakeview Residency</strong
+                            ><small>PR-1002 · Ahmedabad</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>72</td>
+                      <td>64</td>
+                      <td>₹19.6L</td>
+                      <td><span class="badge success">Active</span></td>
+                      <td>
+                        <button
+                          class="btn small"
+                          onclick="location.href = 'property-details.html'"
+                        >
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">OT</div>
+                          <div>
+                            <strong>Orchid Towers</strong
+                            ><small>PR-1003 · Gandhinagar</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>54</td>
+                      <td>47</td>
+                      <td>₹15.1L</td>
+                      <td><span class="badge success">Active</span></td>
+                      <td><button class="btn small">View</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">GA</div>
+                          <div>
+                            <strong>Green Avenue</strong
+                            ><small>PR-1004 · Ahmedabad</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>48</td>
+                      <td>39</td>
+                      <td>₹11.4L</td>
+                      <td><span class="badge warning">Renovation</span></td>
+                      <td><button class="btn small">View</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">RP</div>
+                          <div>
+                            <strong>Riverfront Plaza</strong
+                            ><small>PR-1005 · Ahmedabad</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>16</td>
+                      <td>9</td>
+                      <td>₹4.2L</td>
+                      <td><span class="badge success">Active</span></td>
+                      <td><button class="btn small">View</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination">
+                <span>Showing 1–10 of 48 records</span>
+                <div class="pages">
+                  <button>‹</button><button class="active">1</button
+                  ><button>2</button><button>3</button><button>4</button
+                  ><button>›</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-backdrop" id="addProperty">
+            <div class="modal">
+              <div class="modal-head">
+                <h3>Add property</h3>
+                <button class="icon-btn" data-modal-close>×</button>
+              </div>
+              <form
+                data-demo-form
+                data-success="Add property saved successfully"
+              >
+                <div class="modal-body">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Property name</label
+                      ><input required placeholder="Sunrise Heights" />
+                    </div>
+                    <div class="form-group">
+                      <label>Property type</label
+                      ><select>
+                        <option>Apartment Complex</option>
+                        <option>Commercial</option>
+                        <option>Villa</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Address</label
+                      ><input required placeholder="Area, city, state" />
+                    </div>
+                    <div class="form-group">
+                      <label>Total units</label
+                      ><input required type="number" min="1" placeholder="48" />
+                    </div>
+                    <div class="form-group">
+                      <label>Manager</label
+                      ><select>
+                        <option>Aditya Rao</option>
+                        <option>Mehul Shah</option>
+                      </select>
+                    </div>
+                    <div class="form-group full">
+                      <label>Description</label
+                      ><textarea
+                        placeholder="Internal property notes"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-foot">
+                  <button type="button" class="btn" data-modal-close>
+                    Cancel</button
+                  ><button class="btn primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

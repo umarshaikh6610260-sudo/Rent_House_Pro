@@ -1,0 +1,251 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rental Agreements · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="active" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Rental Agreements</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">
+            Operations / <span>Rental Agreements</span>
+          </div>
+          <div class="page-head">
+            <div>
+              <h1>Rental Agreements</h1>
+              <p>
+                Track active leases, renewals, deposits and document records
+              </p>
+            </div>
+            <div class="actions"></div>
+          </div>
+          <div class="breadcrumb">Operations / <span></span></div>
+          <div class="page-head">
+            <div>
+              <h1></h1>
+              <p></p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn"
+                onclick="toast('CSV export prepared', 'success')"
+              >
+                ⇩ Export</button
+              ><button class="btn primary" data-modal-open="#addAgreement">
+                ＋ New agreement
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-pad">
+              <div class="filters">
+                <div class="search">
+                  <span>⌕</span
+                  ><input
+                    data-search-table="#dataTable"
+                    placeholder="Search..."
+                  />
+                </div>
+                <select>
+                  <option>All statuses</option>
+                  <option>Active</option>
+                  <option>Pending</option>
+                  <option>Expired</option></select
+                ><select>
+                  <option>All properties</option>
+                  <option>Sunrise Heights</option>
+                  <option>Lakeview Residency</option>
+                </select>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="dataTable" data-sort-table>
+                  <thead>
+                    <tr>
+                      <th data-sort>Agreement</th>
+                      <th data-sort>Tenant</th>
+                      <th data-sort>Property / unit</th>
+                      <th data-sort>Start</th>
+                      <th data-sort>End</th>
+                      <th data-sort>Rent</th>
+                      <th data-sort>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>AGR-2026-00421</strong></td>
+                      <td>Priya Mehta</td>
+                      <td>Sunrise Heights · A-402</td>
+                      <td>01 Oct 2025</td>
+                      <td>30 Sep 2026</td>
+                      <td>₹28,500</td>
+                      <td><span class="badge danger">Expiring</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>AGR-2026-00418</strong></td>
+                      <td>Rohan Shah</td>
+                      <td>Lakeview Residency · B-110</td>
+                      <td>15 Oct 2025</td>
+                      <td>14 Oct 2026</td>
+                      <td>₹34,000</td>
+                      <td><span class="badge warning">Expiring</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>AGR-2026-00402</strong></td>
+                      <td>Neha Patel</td>
+                      <td>Green Avenue · 3C</td>
+                      <td>03 Nov 2025</td>
+                      <td>02 Nov 2026</td>
+                      <td>₹22,000</td>
+                      <td><span class="badge success">Active</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>AGR-2025-00987</strong></td>
+                      <td>Arjun Shah</td>
+                      <td>Orchid Towers · 2B</td>
+                      <td>20 Aug 2024</td>
+                      <td>19 Aug 2025</td>
+                      <td>₹30,000</td>
+                      <td><span class="badge neutral">Expired</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination">
+                <span>Showing 1–10 of 48 records</span>
+                <div class="pages">
+                  <button>‹</button><button class="active">1</button
+                  ><button>2</button><button>3</button><button>4</button
+                  ><button>›</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-backdrop" id="addAgreement">
+            <div class="modal">
+              <div class="modal-head">
+                <h3>New agreement</h3>
+                <button class="icon-btn" data-modal-close>×</button>
+              </div>
+              <form
+                data-demo-form
+                data-success="New agreement saved successfully"
+              >
+                <div class="modal-body">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Agreement number</label
+                      ><input required placeholder="AGR-2026-00450" />
+                    </div>
+                    <div class="form-group">
+                      <label>Tenant</label
+                      ><select>
+                        <option>Priya Mehta</option>
+                        <option>Rohan Shah</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Property / unit</label
+                      ><select>
+                        <option>Sunrise Heights · A-402</option>
+                        <option>Lakeview · B-110</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Start date</label><input type="date" required />
+                    </div>
+                    <div class="form-group">
+                      <label>End date</label><input type="date" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Monthly rent</label
+                      ><input type="number" required placeholder="28500" />
+                    </div>
+                    <div class="form-group">
+                      <label>Security deposit</label
+                      ><input type="number" placeholder="85000" />
+                    </div>
+                    <div class="form-group full">
+                      <label>Agreement document</label
+                      ><input type="file" accept=".pdf,.doc,.docx" />
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-foot">
+                  <button type="button" class="btn" data-modal-close>
+                    Cancel</button
+                  ><button class="btn primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

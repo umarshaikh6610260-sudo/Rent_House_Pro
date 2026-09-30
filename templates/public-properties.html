@@ -1,0 +1,449 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Properties | Meridian Property Management</title>
+
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+<header class="public-header">
+
+    <div class="nav-container">
+
+        <!-- LOGO -->
+        <a href="{% url 'home' %}" class="logo">
+
+            <span class="logo-mark">M</span>
+
+            <span class="logo-text">
+                <strong>Meridian</strong>
+                <small>PROPERTY MANAGEMENT</small>
+            </span>
+
+        </a>
+
+
+        <!-- CENTER SEARCH -->
+        <div class="nav-search">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="search"
+                id="propertySearch"
+                placeholder="Search properties..."
+                autocomplete="off"
+            >
+
+            <button
+                type="button"
+                id="searchBtn"
+                aria-label="Search">
+                →
+            </button>
+
+            <!-- SEARCH RESULTS -->
+            <div
+                class="search-results"
+                id="searchResults">
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+        <nav class="public-nav" id="publicNav">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'services' %}">
+                Services
+            </a>
+
+            <a href="{% url 'properties' %}" class="active">
+                Properties
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+            <a href="{% url 'login' %}" class="nav-login">
+                Owner Login
+            </a>
+
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            type="button"
+            aria-label="Open menu">
+
+            ☰
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<section class="inner-hero properties-hero">
+
+    <div class="inner-hero-content">
+
+        <span class="hero-label">
+            OUR PROPERTIES
+        </span>
+
+        <h1>
+            Find a place
+            you'll be happy to call home.
+        </h1>
+
+        <p>
+            Browse a selection of residential properties
+            currently managed by Meridian.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FEATURED PROPERTY ================= -->
+
+<!-- ================= PROPERTIES ================= -->
+
+<section class="featured-properties">
+
+    <div class="section-top">
+
+        <div>
+            <span class="section-label">
+                CURRENTLY AVAILABLE
+            </span>
+
+            <h2>
+                Properties that feel like home.
+            </h2>
+
+            <p>
+                Explore carefully maintained homes and
+                apartments managed by our property team.
+            </p>
+        </div>
+
+        <!-- <a href="{% url 'properties' %}" class="under-link">
+            View all properties →
+        </a> -->
+
+    </div>
+
+
+    <!-- Django automatically creates cards -->
+
+    <div class="property-grid">
+
+        {% for flat in Flat_Data %}
+
+        <article class="property-card">
+
+            <!-- PROPERTY IMAGE -->
+
+            <div class="property-image">
+
+                <img
+                    src="{{ flat.image_url }}"
+                    alt="{{ flat.title }}"
+                    loading="lazy"
+                >
+
+                {% if flat.available %}
+                    <span class="image-tag">
+                        AVAILABLE
+                    </span>
+                {% else %}
+                    <span class="image-tag rented-tag">
+                        RENTED
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- PROPERTY CONTENT -->
+
+            <div class="property-card-content">
+
+                <div class="property-card-top">
+
+                    <span class="property-type">
+                        {{ flat.property_type }}
+                    </span>
+
+                    <span class="property-condition">
+                        {{ flat.condition }}
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    {{ flat.title }}
+                </h3>
+
+
+                <p class="property-location">
+                    {{ flat.location }}, {{ flat.city }}
+                </p>
+
+
+                <!-- PROPERTY DETAILS -->
+
+                <div class="property-info">
+
+                    <div>
+                        <strong>
+                            {{ flat.bedrooms }}
+                        </strong>
+                        <span>Beds</span>
+                    </div>
+
+                    <div>
+                        <strong>
+                            {{ flat.bathrooms }}
+                        </strong>
+                        <span>Baths</span>
+                    </div>
+
+                    <div>
+                        <strong>
+                            {{ flat.area_sqft }}
+                        </strong>
+                        <span>Sq Ft</span>
+                    </div>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="property-price">
+
+                    <strong>
+                        ₹{{ flat.rent }}
+                    </strong>
+
+                    <span>
+                        / month
+                    </span>
+
+                </div>
+
+
+                <!-- EXTRA DETAILS -->
+
+                <div class="property-meta">
+
+                    <span>
+                        {{ flat.bhk }} BHK
+                    </span>
+
+                    <span>
+                        {{ flat.furnishing }}
+                    </span>
+
+                    {% if flat.parking %}
+                        <span>Parking</span>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- ACTION -->
+
+                <a
+                    href="{% url 'properties' %}"
+                    class="primary-btn dark-btn property-view-btn"
+                >
+                    View Property
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <!-- No property available -->
+
+        <div class="no-properties">
+
+            <h3>
+                No properties available
+            </h3>
+
+            <p>
+                Please check again later.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<section class="property-owner-cta">
+
+    <div>
+
+        <span class="section-label">
+            PROPERTY OWNERS
+        </span>
+
+        <h2>
+            Have a property
+            you'd like us to manage?
+        </h2>
+
+    </div>
+
+
+    <a href="{% url 'contact' %}"
+       class="primary-btn">
+
+        Talk to Our Team
+        <span>→</span>
+
+    </a>
+
+</section>
+
+
+
+<footer class="public-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-company">
+
+            <a href="{% url 'home' %}" class="logo">
+
+                <span class="logo-mark">M</span>
+
+                <span class="logo-text">
+
+                    <strong>Meridian</strong>
+
+                    <small>
+                        PROPERTY MANAGEMENT
+                    </small>
+
+                </span>
+
+            </a>
+
+            <p>
+                Professional property management for
+                owners, investors and tenants.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Company</h4>
+
+            <a href="{% url 'home' %}">Home</a>
+
+            <a href="{% url 'about' %}">About</a>
+
+            <a href="{% url 'services' %}">Services</a>
+
+            <a href="{% url 'properties' %}">
+                Properties
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Contact</h4>
+
+            <a href="{% url 'contact' %}">
+                Contact Us
+            </a>
+
+            <a href="tel:+919876543210">
+                +91 98765 43210
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Office</h4>
+
+            <p>Ahmedabad, Gujarat</p>
+
+            <p>Mon – Sat</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Meridian Property Management
+        </span>
+
+        <span>
+            Privacy · Terms
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="{% static 'js/public.js' %}"></script>
+
+</body>
+
+</html>

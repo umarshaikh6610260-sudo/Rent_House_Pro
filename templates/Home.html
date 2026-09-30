@@ -1,0 +1,465 @@
+```html
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RentNest | Find Your Perfect Home</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="/" class="logo">
+                Rent<span>Nest</span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="/" class="active">Home</a>
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+                <a href="/rating/">Ratings</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#" class="login-btn">Login</a>
+                <a href="#" class="add-property-btn">List Property</a>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle">
+                ☰
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+                Find a place you'll love
+            </span>
+
+            <h1>
+                Find Your
+                <span>Perfect Home</span>
+            </h1>
+
+            <p>
+                Discover comfortable apartments and houses
+                available for rent in Ahmedabad.
+            </p>
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <div class="search-field">
+                    <label>Location</label>
+                    <input
+                        type="text"
+                        id="locationSearch"
+                        placeholder="Search location..."
+                    >
+                </div>
+
+                <div class="search-field">
+                    <label>Property Type</label>
+
+                    <select id="propertyType">
+                        <option value="all">All Types</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="House">House</option>
+                        <option value="Villa">Villa</option>
+                    </select>
+                </div>
+
+                <div class="search-field">
+                    <label>BHK</label>
+
+                    <select id="bhkFilter">
+                        <option value="all">Any BHK</option>
+                        <option value="1">1 BHK</option>
+                        <option value="2">2 BHK</option>
+                        <option value="3">3 BHK</option>
+                        <option value="4">4 BHK</option>
+                    </select>
+                </div>
+
+                <button class="search-btn" id="searchBtn">
+                    Search
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-container">
+
+        <!-- SECTION HEADER -->
+
+        <section class="section-header">
+
+            <div>
+                <span class="section-label">
+                    AVAILABLE PROPERTIES
+                </span>
+
+                <h2>
+                    Homes for Rent
+                </h2>
+
+                <p>
+                    Explore properties that match your lifestyle.
+                </p>
+            </div>
+
+            <div class="property-count">
+                <strong id="propertyCount">
+                    {{ Flat_Data|length }}
+                </strong>
+                Properties
+            </div>
+
+        </section>
+
+
+        <!-- ================= FILTER BAR ================= -->
+
+        <div class="filter-bar">
+
+            <button class="filter-btn active" data-filter="all">
+                All
+            </button>
+
+            <button class="filter-btn" data-filter="2">
+                2 BHK
+            </button>
+
+            <button class="filter-btn" data-filter="3">
+                3 BHK
+            </button>
+
+            <button class="filter-btn" data-filter="Apartment">
+                Apartments
+            </button>
+
+            <button class="filter-btn" data-filter="Fully Furnished">
+                Furnished
+            </button>
+
+        </div>
+
+
+        <!-- ================= PROPERTY GRID ================= -->
+
+        <section class="property-grid" id="propertyGrid">
+
+            {% for flat in Flat_Data %}
+
+            <article
+                class="property-card"
+                data-bhk="{{ flat.bhk }}"
+                data-type="{{ flat.property_type }}"
+                data-furnishing="{{ flat.furnishing }}"
+                data-location="{{ flat.location }}"
+            >
+
+                <!-- IMAGE -->
+
+                <div class="property-image">
+
+                    <img
+                        src="{{ flat.image_url }}"
+                        alt="{{ flat.title }}"
+                        loading="lazy"
+                    >
+
+                    <span class="availability">
+                        {% if flat.available %}
+                            Available
+                        {% else %}
+                            Rented
+                        {% endif %}
+                    </span>
+
+                    <button class="favorite-btn" title="Add to favourites">
+                        ♡
+                    </button>
+
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div class="property-content">
+
+                    <div class="property-top">
+
+                        <span class="property-type">
+                            {{ flat.property_type }}
+                        </span>
+
+                        <span class="condition">
+                            {{ flat.condition }}
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        {{ flat.title }}
+                    </h3>
+
+
+                    <p class="location">
+                        📍 {{ flat.location }}, {{ flat.city }}
+                    </p>
+
+
+                    <!-- PRICE -->
+
+                    <div class="price-row">
+
+                        <div class="rent">
+                            <strong>
+                                ₹{{ flat.rent }}
+                            </strong>
+
+                            <span>
+                                / month
+                            </span>
+                        </div>
+
+                        <div class="deposit">
+                            Deposit ₹{{ flat.deposit }}
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROPERTY DETAILS -->
+
+                    <div class="property-details">
+
+                        <div>
+                            <strong>{{ flat.bedrooms }}</strong>
+                            <span>Beds</span>
+                        </div>
+
+                        <div>
+                            <strong>{{ flat.bathrooms }}</strong>
+                            <span>Baths</span>
+                        </div>
+
+                        <div>
+                            <strong>{{ flat.area_sqft }}</strong>
+                            <span>sq.ft</span>
+                        </div>
+
+                        <div>
+                            <strong>{{ flat.floor }}</strong>
+                            <span>Floor</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="features">
+
+                        <span>
+                            {% if flat.parking %}
+                                ✓ Parking
+                            {% endif %}
+                        </span>
+
+                        <span>
+                            {% if flat.balcony %}
+                                ✓ Balcony
+                            {% endif %}
+                        </span>
+
+                        <span>
+                            {{ flat.furnishing }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- ACTION -->
+
+                    <div class="property-actions">
+
+                        <a
+                            href="#"
+                            class="view-btn"
+                        >
+                            View Details
+                        </a>
+
+                        <button
+                            class="contact-btn"
+                            data-property="{{ flat.title }}"
+                        >
+                            Contact
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <!-- EMPTY STATE -->
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    🏠
+                </div>
+
+                <h3>
+                    No Properties Found
+                </h3>
+
+                <p>
+                    We couldn't find any property matching your search.
+                </p>
+
+                <button id="resetFilters">
+                    Reset Filters
+                </button>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="property-cta">
+
+        <div class="cta-content">
+
+            <span>
+                OWN A PROPERTY?
+            </span>
+
+            <h2>
+                Want to rent out your property?
+            </h2>
+
+            <p>
+                List your property and connect with potential tenants.
+            </p>
+
+            <a href="#" class="cta-btn">
+                List Your Property
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="/" class="logo">
+                    Rent<span>Nest</span>
+                </a>
+
+                <p>
+                    Making property rental simple,
+                    transparent and convenient.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Quick Links</h4>
+
+                <a href="/">Home</a>
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+                <a href="/rating/">Ratings</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Property</h4>
+
+                <a href="#">Apartments</a>
+                <a href="#">2 BHK</a>
+                <a href="#">3 BHK</a>
+                <a href="#">Furnished Homes</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Contact</h4>
+
+                <p>Ahmedabad, Gujarat</p>
+                <p>+91 98765 43210</p>
+                <p>hello@rentnest.com</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 RentNest. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>
+```

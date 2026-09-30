@@ -1,0 +1,464 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Services | Meridian Property Management</title>
+
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+
+</head>
+
+<body>
+
+
+<header class="public-header">
+
+    <div class="nav-container">
+
+        <a href="{% url 'home' %}" class="logo">
+
+            <span class="logo-mark">M</span>
+
+            <span class="logo-text">
+
+                <strong>Meridian</strong>
+
+                <small>
+                    PROPERTY MANAGEMENT
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <nav class="public-nav" id="publicNav">
+
+            <a href="{% url 'home' %}">Home</a>
+
+            <a href="{% url 'about' %}">About</a>
+
+            <a href="{% url 'services' %}" class="active">
+                Services
+            </a>
+
+            <a href="{% url 'properties' %}">
+                Properties
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+            <a href="{% url 'login' %}" class="nav-login">
+                Owner Login
+            </a>
+
+        </nav>
+
+
+        <button class="mobile-menu-btn"
+                id="mobileMenuBtn">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<section class="inner-hero services-hero">
+
+    <div class="inner-hero-content">
+
+        <span class="hero-label">
+            OUR SERVICES
+        </span>
+
+        <h1>
+            We handle the
+            property. You enjoy
+            the investment.
+        </h1>
+
+        <p>
+            Practical property management services designed
+            around owners, tenants and everyday operations.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<section class="services-intro">
+
+    <div>
+
+        <span class="section-label">
+            PROPERTY MANAGEMENT
+        </span>
+
+        <h2>
+            One team for the
+            everyday details.
+        </h2>
+
+    </div>
+
+    <p>
+        From finding and supporting tenants to tracking
+        payments and arranging repairs, our services are
+        designed to keep rental properties running smoothly.
+    </p>
+
+</section>
+
+
+
+<section class="services-list">
+
+
+    <article class="service-large">
+
+        <div class="service-large-number">
+            01
+        </div>
+
+        <div class="service-large-content">
+
+            <h2>
+                Rental Management
+            </h2>
+
+            <p>
+                Keep your rental operation organised from
+                tenant onboarding through monthly rent collection.
+            </p>
+
+            <ul>
+
+                <li>Rent collection and tracking</li>
+
+                <li>Tenant communication</li>
+
+                <li>Lease coordination</li>
+
+                <li>Monthly owner updates</li>
+
+            </ul>
+
+        </div>
+
+    </article>
+
+
+
+    <article class="service-large">
+
+        <div class="service-large-number">
+            02
+        </div>
+
+        <div class="service-large-content">
+
+            <h2>
+                Tenant Management
+            </h2>
+
+            <p>
+                A reliable point of contact for tenants helps
+                reduce confusion and keeps issues moving.
+            </p>
+
+            <ul>
+
+                <li>Tenant onboarding</li>
+
+                <li>Routine communication</li>
+
+                <li>Move-in and move-out coordination</li>
+
+                <li>Issue follow-up</li>
+
+            </ul>
+
+        </div>
+
+    </article>
+
+
+
+    <article class="service-large">
+
+        <div class="service-large-number">
+            03
+        </div>
+
+        <div class="service-large-content">
+
+            <h2>
+                Maintenance & Repairs
+            </h2>
+
+            <p>
+                We coordinate everyday repairs and maintenance
+                so small problems do not become bigger ones.
+            </p>
+
+            <ul>
+
+                <li>Maintenance requests</li>
+
+                <li>Vendor coordination</li>
+
+                <li>Repair follow-up</li>
+
+                <li>Routine inspections</li>
+
+            </ul>
+
+        </div>
+
+    </article>
+
+
+
+    <article class="service-large">
+
+        <div class="service-large-number">
+            04
+        </div>
+
+        <div class="service-large-content">
+
+            <h2>
+                Financial Management
+            </h2>
+
+            <p>
+                Keep the financial side of your property
+                simple, visible and properly recorded.
+            </p>
+
+            <ul>
+
+                <li>Payment records</li>
+
+                <li>Expense tracking</li>
+
+                <li>Rent statements</li>
+
+                <li>Owner reports</li>
+
+            </ul>
+
+        </div>
+
+    </article>
+
+</section>
+
+
+
+<section class="process-section">
+
+    <div class="process-heading">
+
+        <span class="section-label">
+            OUR PROCESS
+        </span>
+
+        <h2>
+            Simple from
+            day one.
+        </h2>
+
+    </div>
+
+
+    <div class="process-line">
+
+        <div>
+
+            <span>01</span>
+
+            <h3>
+                Tell us about
+                your property
+            </h3>
+
+        </div>
+
+
+        <div>
+
+            <span>02</span>
+
+            <h3>
+                We create a
+                management plan
+            </h3>
+
+        </div>
+
+
+        <div>
+
+            <span>03</span>
+
+            <h3>
+                We manage the
+                everyday work
+            </h3>
+
+        </div>
+
+
+        <div>
+
+            <span>04</span>
+
+            <h3>
+                You receive
+                clear updates
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="home-cta">
+
+    <div>
+
+        <span>
+            NEED PROPERTY MANAGEMENT?
+        </span>
+
+        <h2>
+            Tell us what you need.
+        </h2>
+
+    </div>
+
+    <a href="{% url 'contact' %}"
+       class="cta-light-btn">
+
+        Get in Touch
+        <span>→</span>
+
+    </a>
+
+</section>
+
+
+
+<footer class="public-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-company">
+
+            <a href="{% url 'home' %}" class="logo">
+
+                <span class="logo-mark">M</span>
+
+                <span class="logo-text">
+
+                    <strong>Meridian</strong>
+
+                    <small>
+                        PROPERTY MANAGEMENT
+                    </small>
+
+                </span>
+
+            </a>
+
+            <p>
+                Professional property management for
+                owners, investors and tenants.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Company</h4>
+
+            <a href="{% url 'home' %}">Home</a>
+
+            <a href="{% url 'about' %}">About</a>
+
+            <a href="{% url 'services' %}">Services</a>
+
+            <a href="{% url 'properties' %}">
+                Properties
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Contact</h4>
+
+            <a href="{% url 'contact' %}">
+                Contact Us
+            </a>
+
+            <a href="tel:+919876543210">
+                +91 98765 43210
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Office</h4>
+
+            <p>Ahmedabad, Gujarat</p>
+
+            <p>Mon – Sat</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Meridian Property Management
+        </span>
+
+        <span>
+            Privacy · Terms
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="{% static 'js/public.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,434 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="active" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Dashboard</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">Overview / <span>Dashboard</span></div>
+          <div class="page-head">
+            <div>
+              <h1>Dashboard</h1>
+              <p>
+                Friday, 13 September 2026 · Portfolio performance at a glance
+              </p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn"
+                onclick="toast('Report export prepared', 'success')"
+              >
+                ⇩ Export</button
+              ><button class="btn primary" data-modal-open="#quickAction">
+                ＋ Quick action
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-4">
+            <div class="card stat">
+              <div class="stat-top">
+                <div>
+                  <div class="stat-label">TOTAL PROPERTIES</div>
+                  <div class="stat-value">48</div>
+                  <div class="stat-meta up">↑ 4.2% vs last month</div>
+                </div>
+                <div class="stat-icon">⌂</div>
+              </div>
+            </div>
+            <div class="card stat">
+              <div class="stat-top">
+                <div>
+                  <div class="stat-label">TOTAL UNITS</div>
+                  <div class="stat-value">286</div>
+                  <div class="stat-meta">241 occupied · 45 vacant</div>
+                </div>
+                <div class="stat-icon">▦</div>
+              </div>
+            </div>
+            <div class="card stat">
+              <div class="stat-top">
+                <div>
+                  <div class="stat-label">TENANTS</div>
+                  <div class="stat-value">219</div>
+                  <div class="stat-meta up">↑ 8 new this month</div>
+                </div>
+                <div class="stat-icon">♙</div>
+              </div>
+            </div>
+            <div class="card stat">
+              <div class="stat-top">
+                <div>
+                  <div class="stat-label">OCCUPANCY</div>
+                  <div class="stat-value">84.3%</div>
+                  <div class="stat-meta up">↑ 1.8 pts this month</div>
+                </div>
+                <div class="stat-icon">%</div>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-3" style="margin-top: 16px">
+            <div class="card card-pad" style="grid-column: span 2">
+              <div class="card-title">
+                <h3>Rent collection</h3>
+                <span>Apr–Sep 2026 · ₹ lakh</span>
+              </div>
+              <div class="chart"><canvas id="rentChart"></canvas></div>
+            </div>
+            <div class="card card-pad">
+              <div class="card-title">
+                <h3>Occupancy overview</h3>
+                <span>286 units</span>
+              </div>
+              <div style="text-align: center; padding: 15px 0">
+                <div style="font-size: 38px; font-weight: 800">84.3%</div>
+                <div class="stat-meta">241 occupied units</div>
+              </div>
+              <div class="kpi-row">
+                <span>Occupied</span><strong>241</strong>
+              </div>
+              <div class="progress"><i style="width: 84.3%"></i></div>
+              <div class="kpi-row"><span>Vacant</span><strong>45</strong></div>
+              <div class="progress">
+                <i style="width: 15.7%; background: #a46b17"></i>
+              </div>
+              <div class="kpi-row">
+                <span>Under maintenance</span><strong>7</strong>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-3" style="margin-top: 16px">
+            <div class="card">
+              <div class="card-pad">
+                <div class="card-title">
+                  <h3>Recent payments</h3>
+                  <a href="payments.html">View all →</a>
+                </div>
+                <div class="list">
+                  <div class="list-item">
+                    <div>
+                      <strong>Priya Mehta</strong>
+                      <p>Sunrise Heights · A-402</p>
+                    </div>
+                    <strong>₹28,500</strong>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>Rohan Shah</strong>
+                      <p>Lakeview Residency · B-110</p>
+                    </div>
+                    <strong>₹34,000</strong>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>Neha Patel</strong>
+                      <p>Green Avenue · 3C</p>
+                    </div>
+                    <strong>₹22,000</strong>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>Sameer Khan</strong>
+                      <p>Orchid Towers · 5A</p>
+                    </div>
+                    <strong>₹31,500</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-pad">
+                <div class="card-title">
+                  <h3>Pending rent</h3>
+                  <span>₹3.84 lakh</span>
+                </div>
+                <div class="list">
+                  <div class="list-item">
+                    <div>
+                      <strong>Vikram Joshi</strong>
+                      <p>12 days overdue</p>
+                    </div>
+                    <span class="badge danger">₹41,000</span>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>Meera Iyer</strong>
+                      <p>5 days overdue</p>
+                    </div>
+                    <span class="badge warning">₹29,500</span>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>Aarav Desai</strong>
+                      <p>Due today</p>
+                    </div>
+                    <span class="badge info">₹24,000</span>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>Tanvi Shah</strong>
+                      <p>Due tomorrow</p>
+                    </div>
+                    <span class="badge info">₹27,000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-pad">
+                <div class="card-title">
+                  <h3>Recent maintenance</h3>
+                  <a href="maintenance.html">View all →</a>
+                </div>
+                <div class="list">
+                  <div class="list-item">
+                    <div>
+                      <strong>Water leakage</strong>
+                      <p>A-204 · Assigned to Imran</p>
+                    </div>
+                    <span class="badge warning">In progress</span>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>AC service</strong>
+                      <p>B-110 · Assigned to Ravi</p>
+                    </div>
+                    <span class="badge info">Assigned</span>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>Lift inspection</strong>
+                      <p>Lakeview · Common area</p>
+                    </div>
+                    <span class="badge success">Completed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-2" style="margin-top: 16px">
+            <div class="card">
+              <div class="card-pad">
+                <div class="card-title">
+                  <h3>Upcoming agreement expirations</h3>
+                  <span>Next 60 days</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Tenant</th>
+                        <th>Property</th>
+                        <th>Expiry</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Farhan Sheikh</td>
+                        <td>Sunrise Heights A-302</td>
+                        <td>28 Sep 2026</td>
+                        <td><span class="badge danger">15 days</span></td>
+                      </tr>
+                      <tr>
+                        <td>Komal Trivedi</td>
+                        <td>Orchid Towers 4B</td>
+                        <td>14 Oct 2026</td>
+                        <td><span class="badge warning">31 days</span></td>
+                      </tr>
+                      <tr>
+                        <td>Yash Patel</td>
+                        <td>Green Avenue 2A</td>
+                        <td>02 Nov 2026</td>
+                        <td><span class="badge info">50 days</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-pad">
+                <div class="card-title">
+                  <h3>Recent activities</h3>
+                  <span>Today</span>
+                </div>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <strong>Payment received · ₹28,500</strong>
+                    <p>Priya Mehta paid via UPI · 10:42 AM</p>
+                  </div>
+                  <div class="timeline-item">
+                    <strong>New maintenance request</strong>
+                    <p>Water leakage reported in A-204 · 09:18 AM</p>
+                  </div>
+                  <div class="timeline-item">
+                    <strong>Agreement renewed</strong>
+                    <p>Rohan Shah · Lakeview B-110 · 08:51 AM</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-backdrop" id="quickAction">
+            <div class="modal">
+              <div class="modal-head">
+                <h3>Quick action</h3>
+                <button class="icon-btn" data-modal-close>×</button>
+              </div>
+              <div class="modal-body">
+                <div class="grid grid-2">
+                  <button
+                    class="btn"
+                    onclick="location.href = 'properties.html'"
+                  >
+                    ＋ Add property</button
+                  ><button class="btn" onclick="location.href = 'tenants.html'">
+                    ＋ Add tenant</button
+                  ><button
+                    class="btn"
+                    onclick="location.href = 'payments.html'"
+                  >
+                    ＋ Record payment</button
+                  ><button
+                    class="btn"
+                    onclick="location.href = 'maintenance.html'"
+                  >
+                    ＋ New maintenance
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const c = document.getElementById("rentChart"),
+          ctx = c.getContext("2d");
+        function draw() {
+          const dpr = devicePixelRatio || 1,
+            w = c.clientWidth,
+            h = c.clientHeight;
+          c.width = w * dpr;
+          c.height = h * dpr;
+          ctx.scale(dpr, dpr);
+          const vals = [6.8, 7.2, 7.6, 7.1, 8.3, 8.7],
+            labels = ["Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+            max = 10,
+            pad = 32;
+          ctx.clearRect(0, 0, w, h);
+          ctx.font = "11px Segoe UI";
+          ctx.fillStyle = getComputedStyle(document.body).getPropertyValue(
+            "--muted",
+          );
+          for (let i = 0; i < 5; i++) {
+            let y = pad + (i * (h - pad * 1.5)) / 4;
+            ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue(
+              "--border",
+            );
+            ctx.beginPath();
+            ctx.moveTo(pad, y);
+            ctx.lineTo(w - 10, y);
+            ctx.stroke();
+          }
+          ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue(
+            "--primary",
+          );
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          vals.forEach((v, i) => {
+            let x = pad + (i * (w - pad - 20)) / (vals.length - 1),
+              y = h - pad - (v / max) * (h - pad * 1.6);
+            i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+          });
+          ctx.stroke();
+          vals.forEach((v, i) => {
+            let x = pad + (i * (w - pad - 20)) / (vals.length - 1),
+              y = h - pad - (v / max) * (h - pad * 1.6);
+            ctx.fillStyle = getComputedStyle(document.body).getPropertyValue(
+              "--primary",
+            );
+            ctx.beginPath();
+            ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = getComputedStyle(document.body).getPropertyValue(
+              "--muted",
+            );
+            ctx.fillText(labels[i], x - 9, h - 8);
+          });
+        }
+        draw();
+        addEventListener("resize", draw);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Users & Roles · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="active" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Users & Roles</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">
+            Administration / <span>Users & Roles</span>
+          </div>
+          <div class="page-head">
+            <div>
+              <h1>Users & Roles</h1>
+              <p>Manage access, roles, status and login activity</p>
+            </div>
+            <div class="actions"></div>
+          </div>
+          <div class="grid grid-3" style="margin-bottom: 16px">
+            <div class="card card-pad">
+              <strong>Super Admin</strong>
+              <p class="stat-meta">Full portfolio and system control.</p>
+            </div>
+            <div class="card card-pad">
+              <strong>Property Manager</strong>
+              <p class="stat-meta">
+                Properties, tenants, rent and maintenance.
+              </p>
+            </div>
+            <div class="card card-pad">
+              <strong>Owner / Tenant / Staff</strong>
+              <p class="stat-meta">Scoped access based on assigned records.</p>
+            </div>
+          </div>
+          <div class="breadcrumb">Operations / <span></span></div>
+          <div class="page-head">
+            <div>
+              <h1></h1>
+              <p></p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn"
+                onclick="toast('CSV export prepared', 'success')"
+              >
+                ⇩ Export</button
+              ><button class="btn primary" data-modal-open="#addUser">
+                ＋ Invite user
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-pad">
+              <div class="filters">
+                <div class="search">
+                  <span>⌕</span
+                  ><input
+                    data-search-table="#dataTable"
+                    placeholder="Search..."
+                  />
+                </div>
+                <select>
+                  <option>All statuses</option>
+                  <option>Active</option>
+                  <option>Pending</option>
+                  <option>Expired</option></select
+                ><select>
+                  <option>All properties</option>
+                  <option>Sunrise Heights</option>
+                  <option>Lakeview Residency</option>
+                </select>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="dataTable" data-sort-table>
+                  <thead>
+                    <tr>
+                      <th data-sort>User</th>
+                      <th data-sort>Role</th>
+                      <th data-sort>Status</th>
+                      <th data-sort>Last login</th>
+                      <th data-sort>Device</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">AR</div>
+                          <div>
+                            <strong>Aditya Rao</strong
+                            ><small>aditya@meridianpm.example</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>Super Admin</td>
+                      <td><span class="badge success">Active</span></td>
+                      <td>13 Sep 2026 · 10:42</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">MS</div>
+                          <div>
+                            <strong>Mehul Shah</strong
+                            ><small>mehul@meridianpm.example</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>Property Manager</td>
+                      <td><span class="badge success">Active</span></td>
+                      <td>13 Sep 2026 · 09:31</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">RK</div>
+                          <div>
+                            <strong>Ravi Kumar</strong
+                            ><small>ravi@meridianpm.example</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>Maintenance Staff</td>
+                      <td><span class="badge success">Active</span></td>
+                      <td>12 Sep 2026 · 18:10</td>
+                      <td>Mobile</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="entity">
+                          <div class="avatar">NS</div>
+                          <div>
+                            <strong>Nisha Shah</strong
+                            ><small>nisha@meridianpm.example</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>Property Owner</td>
+                      <td><span class="badge warning">Invited</span></td>
+                      <td>—</td>
+                      <td>—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination">
+                <span>Showing 1–10 of 48 records</span>
+                <div class="pages">
+                  <button>‹</button><button class="active">1</button
+                  ><button>2</button><button>3</button><button>4</button
+                  ><button>›</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-backdrop" id="addUser">
+            <div class="modal">
+              <div class="modal-head">
+                <h3>Invite user</h3>
+                <button class="icon-btn" data-modal-close>×</button>
+              </div>
+              <form
+                data-demo-form
+                data-success="Invite user saved successfully"
+              >
+                <div class="modal-body">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Name</label
+                      ><input required placeholder="Full name" />
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label
+                      ><input
+                        type="email"
+                        required
+                        placeholder="user@company.com"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Role</label
+                      ><select>
+                        <option>Property Manager</option>
+                        <option>Property Owner</option>
+                        <option>Tenant</option>
+                        <option>Maintenance Staff</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Status</label
+                      ><select>
+                        <option>Active</option>
+                        <option>Invited</option>
+                        <option>Suspended</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-foot">
+                  <button type="button" class="btn" data-modal-close>
+                    Cancel</button
+                  ><button class="btn primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,612 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Meridian Property Management</title>
+
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<!-- ================= HEADER ================= -->
+<header class="public-header">
+
+    <div class="nav-container">
+
+        <!-- LOGO -->
+        <a href="{% url 'home' %}" class="logo">
+
+            <span class="logo-mark">M</span>
+
+            <span class="logo-text">
+                <strong>Meridian</strong>
+                <small>PROPERTY MANAGEMENT</small>
+            </span>
+
+        </a>
+
+
+        <!-- CENTER SEARCH -->
+        <div class="nav-search">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="search"
+                id="propertySearch"
+                placeholder="Search properties..."
+                autocomplete="off"
+            >
+
+            <button
+                type="button"
+                id="searchBtn"
+                aria-label="Search">
+                →
+            </button>
+
+            <!-- SEARCH RESULTS -->
+            <div
+                class="search-results"
+                id="searchResults">
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+        <nav class="public-nav" id="publicNav">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'services' %}">
+                Services
+            </a>
+
+            <a href="{% url 'properties' %}">
+                Properties
+            </a>
+
+            <a href="{% url 'contact' %}" class="active">
+                Contact
+            </a>
+
+            <a href="{% url 'login' %}" class="nav-login">
+                Owner Login
+            </a>
+
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            type="button"
+            aria-label="Open menu">
+
+            ☰
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= CONTACT HERO ================= -->
+
+<section class="contact-hero">
+
+    <div class="contact-hero-overlay"></div>
+
+    <div class="contact-hero-content">
+
+        <span class="hero-label">
+            GET IN TOUCH
+        </span>
+
+        <h1>
+            Let's talk about
+            <span>your property.</span>
+        </h1>
+
+        <p>
+            Whether you're looking for a reliable property manager
+            or searching for your next rental, we're here to help.
+        </p>
+
+    </div>
+
+
+    <div class="hero-scroll">
+
+        <span></span>
+
+        Scroll to explore
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CONTACT MAIN ================= -->
+
+<section class="contact-main">
+
+    <div class="contact-wrapper">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="contact-details">
+
+            <span class="section-label">
+                CONTACT OUR TEAM
+            </span>
+
+            <h2>
+                Good properties deserve
+                good management.
+            </h2>
+
+            <p class="contact-intro">
+                Tell us what you're looking for. Our team will
+                help you with property management, rentals,
+                maintenance or any other property-related query.
+            </p>
+
+
+            <!-- OFFICE -->
+
+            <div class="contact-detail">
+
+                <div class="detail-icon">
+                    <span>⌖</span>
+                </div>
+
+                <div>
+
+                    <small>
+                        VISIT OUR OFFICE
+                    </small>
+
+                    <h3>
+                        Ahmedabad, Gujarat
+                    </h3>
+
+                    <p>
+                        204 Business Avenue,<br>
+                        Ahmedabad, Gujarat
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="contact-detail">
+
+                <div class="detail-icon">
+                    <span>☎</span>
+                </div>
+
+                <div>
+
+                    <small>
+                        CALL US
+                    </small>
+
+                    <h3>
+                        +91 98765 43210
+                    </h3>
+
+                    <p>
+                        Monday – Saturday
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="contact-detail">
+
+                <div class="detail-icon">
+                    <span>✉</span>
+                </div>
+
+                <div>
+
+                    <small>
+                        EMAIL US
+                    </small>
+
+                    <h3>
+                        hello@meridianproperty.com
+                    </h3>
+
+                    <p>
+                        We normally reply within one business day.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-hours">
+
+                <strong>
+                    Office Hours
+                </strong>
+
+                <span>
+                    Mon – Sat &nbsp; 9:30 AM – 6:30 PM
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE FORM -->
+
+        <div class="contact-form-box">
+
+            <div class="form-heading">
+
+                <span>
+                    SEND AN INQUIRY
+                </span>
+
+                <h2>
+                    How can we help?
+                </h2>
+
+                <p>
+                    Give us a few details and we'll get back to you.
+                </p>
+
+            </div>
+
+
+            <form id="contactForm">
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="contactName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="contactPhone"
+                            placeholder="+91 XXXXX XXXXX"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="contactEmail"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        What can we help with?
+                    </label>
+
+                    <select
+                        id="contactSubject"
+                        required
+                    >
+
+                        <option value="">
+                            Select a service
+                        </option>
+
+                        <option>
+                            Property Management
+                        </option>
+
+                        <option>
+                            Looking for a Rental
+                        </option>
+
+                        <option>
+                            Tenant Support
+                        </option>
+
+                        <option>
+                            Maintenance
+                        </option>
+
+                        <option>
+                            Property Investment
+                        </option>
+
+                        <option>
+                            General Inquiry
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Message
+                    </label>
+
+                    <textarea
+                        id="contactMessage"
+                        placeholder="Tell us a little about your requirement..."
+                        rows="5"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="contact-submit"
+                >
+
+                    <span>
+                        Send Inquiry
+                    </span>
+
+                    <strong>
+                        →
+                    </strong>
+
+                </button>
+
+
+                <p class="form-disclaimer">
+                    By submitting this form, you agree to be contacted
+                    regarding your inquiry.
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= BOTTOM CTA ================= -->
+
+<section class="contact-bottom">
+
+    <div class="bottom-inner">
+
+        <div>
+
+            <span>
+                HAVE A PROPERTY TO MANAGE?
+            </span>
+
+            <h2>
+                Let's build a better
+                rental experience.
+            </h2>
+
+        </div>
+
+
+        <a
+            href="tel:+919876543210"
+            class="call-button"
+        >
+            Call our team
+            <strong>→</strong>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="public-footer">
+
+    <div class="footer-inner">
+
+
+        <div class="footer-company">
+
+            <a href="{% url 'home' %}" class="logo">
+
+                <span class="logo-mark">
+                    M
+                </span>
+
+                <span class="logo-text">
+
+                    <strong>
+                        Meridian
+                    </strong>
+
+                    <small>
+                        PROPERTY MANAGEMENT
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <p>
+                Professional property management for owners,
+                investors and tenants.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h4>
+                Company
+            </h4>
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'services' %}">
+                Services
+            </a>
+
+            <a href="{% url 'properties' %}">
+                Properties
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h4>
+                Contact
+            </h4>
+
+            <a href="{% url 'contact' %}">
+                Contact Us
+            </a>
+
+            <a href="tel:+919876543210">
+                +91 98765 43210
+            </a>
+
+            <a href="mailto:hello@meridianproperty.com">
+                hello@meridianproperty.com
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h4>
+                Office
+            </h4>
+
+            <p>
+                204 Business Avenue
+            </p>
+
+            <p>
+                Ahmedabad, Gujarat
+            </p>
+
+            <p>
+                Mon – Sat
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Meridian Property Management
+        </span>
+
+        <span>
+            Privacy &nbsp; · &nbsp; Terms
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<script src="{% static 'js/public.js' %}"></script>
+
+</body>
+
+</html>

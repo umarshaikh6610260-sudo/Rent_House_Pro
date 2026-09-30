@@ -1,0 +1,271 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rent Management · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="active" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Rent Management</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">Finance / <span>Rent Management</span></div>
+          <div class="page-head">
+            <div>
+              <h1>Rent Management</h1>
+              <p>
+                Generate monthly rent, monitor collections, late fees and
+                arrears
+              </p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn"
+                onclick="toast('September rent schedule generated', 'success')"
+              >
+                Generate September</button
+              ><button class="btn primary" data-modal-open="#recordRent">
+                ＋ Record rent
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-4">
+            <div class="card stat">
+              <div class="stat-label">EXPECTED</div>
+              <div class="stat-value">₹74.6L</div>
+              <div class="stat-meta">286 active rent lines</div>
+            </div>
+            <div class="card stat">
+              <div class="stat-label">COLLECTED</div>
+              <div class="stat-value">₹62.4L</div>
+              <div class="stat-meta up">83.6% collection rate</div>
+            </div>
+            <div class="card stat">
+              <div class="stat-label">PENDING</div>
+              <div class="stat-value">₹8.4L</div>
+              <div class="stat-meta">29 tenants</div>
+            </div>
+            <div class="card stat">
+              <div class="stat-label">OVERDUE</div>
+              <div class="stat-value">₹3.8L</div>
+              <div class="stat-meta">14 tenants</div>
+            </div>
+          </div>
+          <div class="breadcrumb">Operations / <span></span></div>
+          <div class="page-head">
+            <div>
+              <h1></h1>
+              <p></p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn"
+                onclick="toast('CSV export prepared', 'success')"
+              >
+                ⇩ Export</button
+              ><button class="btn primary" data-modal-open="#recordRent">
+                ＋ Record rent
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-pad">
+              <div class="filters">
+                <div class="search">
+                  <span>⌕</span
+                  ><input
+                    data-search-table="#dataTable"
+                    placeholder="Search..."
+                  />
+                </div>
+                <select>
+                  <option>All statuses</option>
+                  <option>Active</option>
+                  <option>Pending</option>
+                  <option>Expired</option></select
+                ><select>
+                  <option>All properties</option>
+                  <option>Sunrise Heights</option>
+                  <option>Lakeview Residency</option>
+                </select>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="dataTable" data-sort-table>
+                  <thead>
+                    <tr>
+                      <th data-sort>Month</th>
+                      <th data-sort>Tenant</th>
+                      <th data-sort>Property / unit</th>
+                      <th data-sort>Amount</th>
+                      <th data-sort>Due date</th>
+                      <th data-sort>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Sep 2026</td>
+                      <td>Priya Mehta</td>
+                      <td>Sunrise Heights A-402</td>
+                      <td>₹28,500</td>
+                      <td>12 Sep</td>
+                      <td><span class="badge success">Paid</span></td>
+                    </tr>
+                    <tr>
+                      <td>Sep 2026</td>
+                      <td>Vikram Joshi</td>
+                      <td>Orchid Towers 5A</td>
+                      <td>₹41,000</td>
+                      <td>01 Sep</td>
+                      <td><span class="badge danger">Overdue</span></td>
+                    </tr>
+                    <tr>
+                      <td>Sep 2026</td>
+                      <td>Meera Iyer</td>
+                      <td>Sunrise Heights C-208</td>
+                      <td>₹29,500</td>
+                      <td>05 Sep</td>
+                      <td><span class="badge warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                      <td>Sep 2026</td>
+                      <td>Aarav Desai</td>
+                      <td>Lakeview Residency C-201</td>
+                      <td>₹24,000</td>
+                      <td>13 Sep</td>
+                      <td><span class="badge info">Due today</span></td>
+                    </tr>
+                    <tr>
+                      <td>Sep 2026</td>
+                      <td>Tanvi Shah</td>
+                      <td>Green Avenue 1B</td>
+                      <td>₹27,000</td>
+                      <td>14 Sep</td>
+                      <td><span class="badge info">Upcoming</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination">
+                <span>Showing 1–10 of 48 records</span>
+                <div class="pages">
+                  <button>‹</button><button class="active">1</button
+                  ><button>2</button><button>3</button><button>4</button
+                  ><button>›</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-backdrop" id="recordRent">
+            <div class="modal">
+              <div class="modal-head">
+                <h3>Record rent</h3>
+                <button class="icon-btn" data-modal-close>×</button>
+              </div>
+              <form
+                data-demo-form
+                data-success="Record rent saved successfully"
+              >
+                <div class="modal-body">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Tenant</label
+                      ><select>
+                        <option>Vikram Joshi</option>
+                        <option>Meera Iyer</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Amount</label
+                      ><input type="number" required placeholder="41000" />
+                    </div>
+                    <div class="form-group">
+                      <label>Late fee</label
+                      ><input type="number" placeholder="500" />
+                    </div>
+                    <div class="form-group">
+                      <label>Payment status</label
+                      ><select>
+                        <option>Paid</option>
+                        <option>Partially Paid</option>
+                        <option>Pending</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-foot">
+                  <button type="button" class="btn" data-modal-close>
+                    Cancel</button
+                  ><button class="btn primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

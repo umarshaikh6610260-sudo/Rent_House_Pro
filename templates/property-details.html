@@ -1,0 +1,257 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Property Details · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="active" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Property Details</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">
+            Properties / <span>Sunrise Heights</span>
+          </div>
+          <div class="page-head">
+            <div>
+              <h1>Sunrise Heights</h1>
+              <p>Property PR-1001 · Residential apartment complex</p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn"
+                onclick="toast('Edit mode enabled', 'success')"
+              >
+                Edit property</button
+              ><button class="btn primary" data-modal-open="#addUnit">
+                ＋ Add unit
+              </button>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="card card-pad">
+              <div class="image-grid">
+                <img
+                  class="property-img"
+                  src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80"
+                /><img
+                  class="property-img"
+                  src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80"
+                /><img
+                  class="property-img"
+                  src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80"
+                />
+              </div>
+              <div class="tabs" data-tabs style="margin-top: 16px">
+                <button class="tab active" data-tab="units">Units</button
+                ><button class="tab" data-tab="financial">Financial</button
+                ><button class="tab" data-tab="documents">Documents</button>
+              </div>
+              <div data-tab-panel="units">
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Unit</th>
+                        <th>Type</th>
+                        <th>Tenant</th>
+                        <th>Rent</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>A-402</td>
+                        <td>2 BHK</td>
+                        <td>Priya Mehta</td>
+                        <td>₹28,500</td>
+                        <td><span class="badge success">Occupied</span></td>
+                      </tr>
+                      <tr>
+                        <td>A-403</td>
+                        <td>2 BHK</td>
+                        <td>—</td>
+                        <td>₹29,000</td>
+                        <td><span class="badge warning">Vacant</span></td>
+                      </tr>
+                      <tr>
+                        <td>B-110</td>
+                        <td>3 BHK</td>
+                        <td>Rohan Shah</td>
+                        <td>₹34,000</td>
+                        <td><span class="badge success">Occupied</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div data-tab-panel="financial" hidden>
+                <div class="kpi-row">
+                  <span>Monthly rent</span><strong>₹24.8L</strong>
+                </div>
+                <div class="kpi-row">
+                  <span>Collected this month</span><strong>₹20.7L</strong>
+                </div>
+                <div class="kpi-row">
+                  <span>Operating expenses</span><strong>₹4.1L</strong>
+                </div>
+                <div class="kpi-row">
+                  <span>Net operating income</span><strong>₹16.6L</strong>
+                </div>
+              </div>
+              <div data-tab-panel="documents" hidden>
+                <div class="file-drop">
+                  Property agreement, ownership papers and compliance
+                  documents<br /><button
+                    class="btn small"
+                    style="margin-top: 10px"
+                  >
+                    Upload document
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card card-pad">
+                <div class="card-title"><h3>Property information</h3></div>
+                <div class="detail-row">
+                  <span>Address</span><strong>Satellite Road, Ahmedabad</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Property type</span><strong>Apartment Complex</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Total units</span><strong>96</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Occupied</span><strong>82</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Manager</span><strong>Mehul Shah</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Acquired</span><strong>18 Mar 2021</strong>
+                </div>
+              </div>
+              <div class="card card-pad" style="margin-top: 16px">
+                <div class="card-title"><h3>Occupancy</h3></div>
+                <div style="font-size: 30px; font-weight: 800">85.4%</div>
+                <div class="progress" style="margin-top: 10px">
+                  <i style="width: 85.4%"></i>
+                </div>
+                <p class="stat-meta">82 of 96 units occupied</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-backdrop" id="addUnit">
+            <div class="modal">
+              <div class="modal-head">
+                <h3>Add unit</h3>
+                <button class="icon-btn" data-modal-close>×</button>
+              </div>
+              <form data-demo-form>
+                <div class="modal-body">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Unit number</label
+                      ><input required placeholder="A-404" />
+                    </div>
+                    <div class="form-group">
+                      <label>Type</label
+                      ><select>
+                        <option>1 BHK</option>
+                        <option>2 BHK</option>
+                        <option>3 BHK</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Monthly rent</label
+                      ><input type="number" placeholder="28500" />
+                    </div>
+                    <div class="form-group">
+                      <label>Status</label
+                      ><select>
+                        <option>Vacant</option>
+                        <option>Occupied</option>
+                        <option>Maintenance</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-foot">
+                  <button type="button" class="btn" data-modal-close>
+                    Cancel</button
+                  ><button class="btn primary">Save unit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

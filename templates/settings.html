@@ -1,0 +1,202 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Settings & Profile · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Settings & Profile</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">
+            Account / <span>Settings & Profile</span>
+          </div>
+          <div class="page-head">
+            <div>
+              <h1>Settings & Profile</h1>
+              <p>
+                Company configuration, billing rules, notifications and security
+              </p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn primary"
+                onclick="toast('All settings saved', 'success')"
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-2">
+            <div class="card card-pad">
+              <div class="card-title">
+                <h3>Company information</h3>
+                <span>Displayed on receipts</span>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Company name</label
+                  ><input value="Meridian Property Management" />
+                </div>
+                <div class="form-group">
+                  <label>Support email</label
+                  ><input value="support@meridianpm.example" />
+                </div>
+                <div class="form-group">
+                  <label>Phone</label><input value="+91 79 4000 2180" />
+                </div>
+                <div class="form-group">
+                  <label>GSTIN</label><input value="24ABCDE1234F1Z5" />
+                </div>
+                <div class="form-group full">
+                  <label>Office address</label
+                  ><textarea>
+402, Meridian Business Centre, Ahmedabad, Gujarat 380009</textarea
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card card-pad">
+              <div class="card-title"><h3>Rent & late-fee settings</h3></div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Default due day</label
+                  ><input type="number" value="5" />
+                </div>
+                <div class="form-group">
+                  <label>Grace period (days)</label
+                  ><input type="number" value="3" />
+                </div>
+                <div class="form-group">
+                  <label>Late fee type</label
+                  ><select>
+                    <option>Fixed amount</option>
+                    <option>Percentage</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Late fee amount</label><input value="500" />
+                </div>
+                <div class="form-group full">
+                  <label>Automatic reminders</label
+                  ><label class="check"
+                    ><input type="checkbox" checked /> Send due-date and overdue
+                    reminders</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card card-pad">
+              <div class="card-title"><h3>Payment settings</h3></div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Accepted methods</label
+                  ><select multiple style="height: 105px">
+                    <option selected>UPI</option>
+                    <option selected>Bank Transfer</option>
+                    <option selected>Card</option>
+                    <option selected>Cash</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Receipt prefix</label><input value="MRCP" />
+                </div>
+              </div>
+            </div>
+            <div class="card card-pad">
+              <div class="card-title"><h3>Notifications & security</h3></div>
+              <div class="list">
+                <label class="list-item"
+                  ><span
+                    ><strong>Email notifications</strong>
+                    <p>Send payment and maintenance updates</p></span
+                  ><input style="width: auto" type="checkbox" checked
+                /></label>
+                <label class="list-item"
+                  ><span
+                    ><strong>Two-factor authentication</strong>
+                    <p>Require 2FA for administrator accounts</p></span
+                  ><input style="width: auto" type="checkbox" checked
+                /></label>
+                <label class="list-item"
+                  ><span
+                    ><strong>Session timeout</strong>
+                    <p>Sign out inactive users automatically</p></span
+                  ><select style="width: 130px">
+                    <option>30 minutes</option>
+                    <option>60 minutes</option>
+                  </select></label
+                >
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

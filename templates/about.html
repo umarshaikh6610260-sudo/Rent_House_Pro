@@ -1,0 +1,438 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | Meridian Property Management</title>
+
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+
+</head>
+
+<body>
+
+
+<header class="public-header">
+
+    <div class="nav-container">
+
+        <!-- LOGO -->
+        <a href="{% url 'home' %}" class="logo">
+
+            <span class="logo-mark">M</span>
+
+            <span class="logo-text">
+                <strong>Meridian</strong>
+                <small>PROPERTY MANAGEMENT</small>
+            </span>
+
+        </a>
+
+
+        <!-- CENTER SEARCH -->
+        <div class="nav-search">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="search"
+                id="propertySearch"
+                placeholder="Search properties..."
+                autocomplete="off"
+            >
+
+            <button
+                type="button"
+                id="searchBtn"
+                aria-label="Search">
+                →
+            </button>
+
+            <!-- SEARCH RESULTS -->
+            <div
+                class="search-results"
+                id="searchResults">
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+        <nav class="public-nav" id="publicNav">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'about' %}" class="active">
+                About
+            </a>
+
+            <a href="{% url 'services' %}">
+                Services
+            </a>
+
+            <a href="{% url 'properties' %}">
+                Properties
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+            <a href="{% url 'login' %}" class="nav-login">
+                Owner Login
+            </a>
+
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            type="button"
+            aria-label="Open menu">
+
+            ☰
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="inner-hero about-hero">
+
+    <div class="inner-hero-content">
+
+        <span class="hero-label">
+            ABOUT MERIDIAN
+        </span>
+
+        <h1>
+            Property management
+            with a more personal approach.
+        </h1>
+
+        <p>
+            We look after properties, people and the
+            details that keep rental investments moving.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- STORY -->
+
+<section class="about-story">
+
+    <div class="about-story-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
+            alt="Modern property interior">
+
+    </div>
+
+
+    <div class="about-story-content">
+
+        <span class="section-label">
+            OUR STORY
+        </span>
+
+        <h2>
+            Good management is
+            about the details.
+        </h2>
+
+        <p>
+            Meridian Property Management was built around
+            a simple idea: property owners should not have
+            to spend their evenings chasing rent payments,
+            arranging repairs or answering routine tenant
+            questions.
+        </p>
+
+        <p>
+            Our team brings these everyday responsibilities
+            together in one organised system, giving owners
+            clearer records and tenants a more dependable
+            experience.
+        </p>
+
+        <div class="about-signature">
+            <strong>Meridian Team</strong>
+            <span>Property Management</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- NUMBERS -->
+
+<section class="about-numbers">
+
+    <div>
+
+        <strong>250+</strong>
+
+        <span>
+            Properties managed
+        </span>
+
+    </div>
+
+
+    <div>
+
+        <strong>12+</strong>
+
+        <span>
+            Years of experience
+        </span>
+
+    </div>
+
+
+    <div>
+
+        <strong>98%</strong>
+
+        <span>
+            Tenant satisfaction
+        </span>
+
+    </div>
+
+
+    <div>
+
+        <strong>24/7</strong>
+
+        <span>
+            Maintenance support
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- VALUES -->
+
+<section class="values-section">
+
+    <div class="values-title">
+
+        <span class="section-label">
+            HOW WE WORK
+        </span>
+
+        <h2>
+            Straightforward.
+            Reliable. Accountable.
+        </h2>
+
+    </div>
+
+
+    <div class="values-list">
+
+        <div class="value-item">
+
+            <span>01</span>
+
+            <div>
+
+                <h3>
+                    We communicate clearly.
+                </h3>
+
+                <p>
+                    No unnecessary complexity.
+                    Owners receive the information
+                    they actually need.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="value-item">
+
+            <span>02</span>
+
+            <div>
+
+                <h3>
+                    We take ownership.
+                </h3>
+
+                <p>
+                    When something needs attention,
+                    we follow it through instead of
+                    passing the problem around.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="value-item">
+
+            <span>03</span>
+
+            <div>
+
+                <h3>
+                    We respect the property.
+                </h3>
+
+                <p>
+                    Every property represents an
+                    investment. We treat it accordingly.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- CTA -->
+
+<section class="home-cta">
+
+    <div>
+
+        <span>
+            HAVE A PROPERTY TO MANAGE?
+        </span>
+
+        <h2>
+            Let's see how we can help.
+        </h2>
+
+    </div>
+
+    <a href="{% url 'contact' %}"
+       class="cta-light-btn">
+
+        Talk to Us
+        <span>→</span>
+
+    </a>
+
+</section>
+
+
+
+<footer class="public-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-company">
+
+            <a href="{% url 'home' %}" class="logo">
+
+                <span class="logo-mark">M</span>
+
+                <span class="logo-text">
+
+                    <strong>Meridian</strong>
+
+                    <small>PROPERTY MANAGEMENT</small>
+
+                </span>
+
+            </a>
+
+            <p>
+                Professional property management for
+                owners, investors and tenants.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Company</h4>
+
+            <a href="{% url 'home' %}">Home</a>
+
+            <a href="{% url 'about' %}">About</a>
+
+            <a href="{% url 'services' %}">Services</a>
+
+            <a href="{% url 'properties' %}">Properties</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Contact</h4>
+
+            <a href="{% url 'contact' %}">Contact Us</a>
+
+            <a href="tel:+919876543210">
+                +91 98765 43210
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Office</h4>
+
+            <p>Ahmedabad, Gujarat</p>
+
+            <p>Mon – Sat</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>© 2026 Meridian Property Management</span>
+
+        <span>Privacy · Terms</span>
+
+    </div>
+
+</footer>
+
+
+<script src="{% static 'js/public.js' %}"></script>
+
+</body>
+
+</html>

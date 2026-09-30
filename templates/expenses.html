@@ -1,0 +1,250 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Expenses · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="active" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Expenses</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">Finance / <span>Expenses</span></div>
+          <div class="page-head">
+            <div>
+              <h1>Expenses</h1>
+              <p>
+                Track property operating costs, vendor payments and recurring
+                expenses
+              </p>
+            </div>
+            <div class="actions"></div>
+          </div>
+          <div class="breadcrumb">Operations / <span></span></div>
+          <div class="page-head">
+            <div>
+              <h1></h1>
+              <p></p>
+            </div>
+            <div class="actions">
+              <button
+                class="btn"
+                onclick="toast('CSV export prepared', 'success')"
+              >
+                ⇩ Export</button
+              ><button class="btn primary" data-modal-open="#addExpense">
+                ＋ Add expense
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-pad">
+              <div class="filters">
+                <div class="search">
+                  <span>⌕</span
+                  ><input
+                    data-search-table="#dataTable"
+                    placeholder="Search..."
+                  />
+                </div>
+                <select>
+                  <option>All statuses</option>
+                  <option>Active</option>
+                  <option>Pending</option>
+                  <option>Expired</option></select
+                ><select>
+                  <option>All properties</option>
+                  <option>Sunrise Heights</option>
+                  <option>Lakeview Residency</option>
+                </select>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="dataTable" data-sort-table>
+                  <thead>
+                    <tr>
+                      <th data-sort>Expense ID</th>
+                      <th data-sort>Property</th>
+                      <th data-sort>Category</th>
+                      <th data-sort>Date</th>
+                      <th data-sort>Amount</th>
+                      <th data-sort>Description</th>
+                      <th data-sort>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>EXP-2026-771</td>
+                      <td>Sunrise Heights</td>
+                      <td>Repair</td>
+                      <td>12 Sep 2026</td>
+                      <td>₹18,400</td>
+                      <td>Vendor payment</td>
+                      <td><span class="badge success">Paid</span></td>
+                    </tr>
+                    <tr>
+                      <td>EXP-2026-762</td>
+                      <td>Lakeview Residency</td>
+                      <td>Electricity</td>
+                      <td>10 Sep 2026</td>
+                      <td>₹26,700</td>
+                      <td>Utility</td>
+                      <td><span class="badge success">Paid</span></td>
+                    </tr>
+                    <tr>
+                      <td>EXP-2026-744</td>
+                      <td>Orchid Towers</td>
+                      <td>Security</td>
+                      <td>05 Sep 2026</td>
+                      <td>₹42,000</td>
+                      <td>Monthly service</td>
+                      <td><span class="badge warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                      <td>EXP-2026-731</td>
+                      <td>Green Avenue</td>
+                      <td>Cleaning</td>
+                      <td>02 Sep 2026</td>
+                      <td>₹12,500</td>
+                      <td>Vendor payment</td>
+                      <td><span class="badge success">Paid</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination">
+                <span>Showing 1–10 of 48 records</span>
+                <div class="pages">
+                  <button>‹</button><button class="active">1</button
+                  ><button>2</button><button>3</button><button>4</button
+                  ><button>›</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-backdrop" id="addExpense">
+            <div class="modal">
+              <div class="modal-head">
+                <h3>Add expense</h3>
+                <button class="icon-btn" data-modal-close>×</button>
+              </div>
+              <form
+                data-demo-form
+                data-success="Add expense saved successfully"
+              >
+                <div class="modal-body">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Property</label
+                      ><select>
+                        <option>Sunrise Heights</option>
+                        <option>Lakeview Residency</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Category</label
+                      ><select>
+                        <option>Repair</option>
+                        <option>Maintenance</option>
+                        <option>Electricity</option>
+                        <option>Water</option>
+                        <option>Cleaning</option>
+                        <option>Security</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Amount</label
+                      ><input type="number" required placeholder="18400" />
+                    </div>
+                    <div class="form-group">
+                      <label>Date</label><input type="date" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Status</label
+                      ><select>
+                        <option>Paid</option>
+                        <option>Pending</option>
+                      </select>
+                    </div>
+                    <div class="form-group full">
+                      <label>Description</label
+                      ><textarea placeholder="Expense details"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-foot">
+                  <button type="button" class="btn" data-modal-close>
+                    Cancel</button
+                  ><button class="btn primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

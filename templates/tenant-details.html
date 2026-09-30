@@ -1,0 +1,210 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tenant Details · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="active" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Tenant Details</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">Tenants / <span>Priya Mehta</span></div>
+          <div class="page-head">
+            <div>
+              <h1>Priya Mehta</h1>
+              <p>Tenant TN-2041 · Active lease · Sunrise Heights A-402</p>
+            </div>
+            <div class="actions">
+              <button class="btn">Edit tenant</button
+              ><button
+                class="btn primary"
+                onclick="toast('Receipt preview opened', 'success')"
+              >
+                View receipt
+              </button>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="card card-pad">
+              <div class="entity" style="margin-bottom: 18px">
+                <div
+                  class="avatar"
+                  style="width: 52px; height: 52px; font-size: 16px"
+                >
+                  PM
+                </div>
+                <div>
+                  <h2 style="margin: 0; font-size: 18px">Priya Mehta</h2>
+                  <small>priya.mehta@example.com · +91 98765 42109</small>
+                </div>
+              </div>
+              <div class="tabs" data-tabs>
+                <button class="tab active" data-tab="payments">Payments</button
+                ><button class="tab" data-tab="maintenance">Maintenance</button
+                ><button class="tab" data-tab="documents">Documents</button>
+              </div>
+              <div data-tab-panel="payments">
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Month</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>12 Sep</td>
+                        <td>Sep 2026</td>
+                        <td>₹28,500</td>
+                        <td>UPI</td>
+                        <td><span class="badge success">Paid</span></td>
+                      </tr>
+                      <tr>
+                        <td>05 Aug</td>
+                        <td>Aug 2026</td>
+                        <td>₹28,500</td>
+                        <td>Bank Transfer</td>
+                        <td><span class="badge success">Paid</span></td>
+                      </tr>
+                      <tr>
+                        <td>05 Jul</td>
+                        <td>Jul 2026</td>
+                        <td>₹28,500</td>
+                        <td>UPI</td>
+                        <td><span class="badge success">Paid</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div data-tab-panel="maintenance" hidden>
+                <div class="list">
+                  <div class="list-item">
+                    <span
+                      ><strong>Water leakage</strong>
+                      <p>A-204 · 13 Sep</p></span
+                    ><span class="badge warning">In progress</span>
+                  </div>
+                  <div class="list-item">
+                    <span
+                      ><strong>Electrical switch</strong>
+                      <p>A-402 · 02 Jun</p></span
+                    ><span class="badge success">Completed</span>
+                  </div>
+                </div>
+              </div>
+              <div data-tab-panel="documents" hidden>
+                <div class="file-drop">
+                  Lease agreement.pdf · uploaded 01 Oct 2025<br /><button
+                    class="btn small"
+                    style="margin-top: 10px"
+                  >
+                    Upload document
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card card-pad">
+                <div class="card-title"><h3>Lease summary</h3></div>
+                <div class="detail-row">
+                  <span>Property</span><strong>Sunrise Heights</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Unit</span><strong>A-402 · 2 BHK</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Monthly rent</span><strong>₹28,500</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Security deposit</span><strong>₹85,500</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Agreement end</span><strong>30 Sep 2026</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Rent status</span
+                  ><span class="badge success">Paid</span>
+                </div>
+              </div>
+              <div class="card card-pad" style="margin-top: 16px">
+                <div class="card-title"><h3>Emergency contact</h3></div>
+                <strong>Rahul Mehta</strong>
+                <p class="stat-meta">Brother · +91 98111 20872</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

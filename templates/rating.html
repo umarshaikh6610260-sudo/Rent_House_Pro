@@ -1,0 +1,682 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ratings & Reviews | EstateHub</title>
+
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rating.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            Estate<span>Hub</span>
+        </a>
+
+        <nav class="nav-menu" id="navMenu">
+
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="properties.html">Properties</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="rating.html" class="active">Reviews</a>
+
+            <a href="login.html" class="nav-login">
+                Login
+            </a>
+
+        </nav>
+
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= PAGE HEADER ================= -->
+
+<section class="rating-hero">
+
+    <div class="container">
+
+        <span class="section-label">
+            WHAT PEOPLE SAY
+        </span>
+
+        <h1>
+            Trusted by property owners<br>
+            and tenants.
+        </h1>
+
+        <p>
+            Honest experiences from people who use EstateHub
+            to manage their properties and rental needs.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= RATING SUMMARY ================= -->
+
+<section class="rating-summary-section">
+
+    <div class="container rating-summary">
+
+        <div class="overall-rating">
+
+            <div class="rating-number">
+                4.8
+            </div>
+
+            <div class="stars large-stars">
+                ★★★★★
+            </div>
+
+            <p>
+                Based on 128 reviews
+            </p>
+
+        </div>
+
+
+        <div class="rating-breakdown">
+
+            <div class="rating-row">
+
+                <span>5</span>
+
+                <div class="rating-bar">
+                    <div class="rating-fill" style="width: 88%;"></div>
+                </div>
+
+                <small>112</small>
+
+            </div>
+
+
+            <div class="rating-row">
+
+                <span>4</span>
+
+                <div class="rating-bar">
+                    <div class="rating-fill" style="width: 65%;"></div>
+                </div>
+
+                <small>12</small>
+
+            </div>
+
+
+            <div class="rating-row">
+
+                <span>3</span>
+
+                <div class="rating-bar">
+                    <div class="rating-fill" style="width: 20%;"></div>
+                </div>
+
+                <small>3</small>
+
+            </div>
+
+
+            <div class="rating-row">
+
+                <span>2</span>
+
+                <div class="rating-bar">
+                    <div class="rating-fill" style="width: 8%;"></div>
+                </div>
+
+                <small>1</small>
+
+            </div>
+
+
+            <div class="rating-row">
+
+                <span>1</span>
+
+                <div class="rating-bar">
+                    <div class="rating-fill" style="width: 0%;"></div>
+                </div>
+
+                <small>0</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REVIEW FORM ================= -->
+
+<section class="review-form-section">
+
+    <div class="container">
+
+        <div class="review-form-box">
+
+            <div class="form-heading">
+
+                <span class="section-label">
+                    YOUR EXPERIENCE
+                </span>
+
+                <h2>
+                    Share your experience
+                </h2>
+
+                <p>
+                    Your feedback helps us improve and helps
+                    others make better decisions.
+                </p>
+
+            </div>
+
+
+            <form id="reviewForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Your Rating
+                    </label>
+
+                    <div class="star-selector" id="starSelector">
+
+                        <button type="button" data-rating="1">★</button>
+                        <button type="button" data-rating="2">★</button>
+                        <button type="button" data-rating="3">★</button>
+                        <button type="button" data-rating="4">★</button>
+                        <button type="button" data-rating="5">★</button>
+
+                    </div>
+
+                    <input
+                        type="hidden"
+                        id="ratingValue"
+                        name="rating"
+                        value="0"
+                    >
+
+                    <small id="ratingText">
+                        Select a rating
+                    </small>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="role">
+                            You are
+                        </label>
+
+                        <select id="role" required>
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="Property Owner">
+                                Property Owner
+                            </option>
+
+                            <option value="Tenant">
+                                Tenant
+                            </option>
+
+                            <option value="Property Manager">
+                                Property Manager
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="review">
+                        Your Review
+                    </label>
+
+                    <textarea
+                        id="review"
+                        rows="5"
+                        maxlength="500"
+                        placeholder="Tell us about your experience..."
+                        required
+                    ></textarea>
+
+                    <div class="character-count">
+                        <span id="charCount">0</span>/500
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary submit-review"
+                >
+                    Submit Review
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REVIEWS ================= -->
+
+<section class="reviews-section">
+
+    <div class="container">
+
+        <div class="reviews-heading">
+
+            <div>
+
+                <span class="section-label">
+                    CUSTOMER REVIEWS
+                </span>
+
+                <h2>
+                    Real experiences. Real feedback.
+                </h2>
+
+            </div>
+
+
+            <select id="reviewFilter">
+
+                <option value="all">
+                    All Ratings
+                </option>
+
+                <option value="5">
+                    5 Stars
+                </option>
+
+                <option value="4">
+                    4 Stars
+                </option>
+
+                <option value="3">
+                    3 Stars
+                </option>
+
+                <option value="2">
+                    2 Stars
+                </option>
+
+                <option value="1">
+                    1 Star
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="reviews-grid" id="reviewsContainer">
+
+
+            <!-- REVIEW 1 -->
+
+            <article class="review-card" data-rating="5">
+
+                <div class="review-top">
+
+                    <div class="review-user">
+
+                        <div class="avatar">
+                            AS
+                        </div>
+
+                        <div>
+                            <h3>Ahmed Shaikh</h3>
+                            <span>Property Owner</span>
+                        </div>
+
+                    </div>
+
+                    <span class="review-date">
+                        2 weeks ago
+                    </span>
+
+                </div>
+
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+
+                <p class="review-text">
+                    EstateHub has made it much easier to keep track
+                    of my rental properties and monthly payments.
+                    Everything feels organised and easy to access.
+                </p>
+
+            </article>
+
+
+            <!-- REVIEW 2 -->
+
+            <article class="review-card" data-rating="5">
+
+                <div class="review-top">
+
+                    <div class="review-user">
+
+                        <div class="avatar">
+                            NR
+                        </div>
+
+                        <div>
+                            <h3>Neha Rathod</h3>
+                            <span>Tenant</span>
+                        </div>
+
+                    </div>
+
+                    <span class="review-date">
+                        1 month ago
+                    </span>
+
+                </div>
+
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+
+                <p class="review-text">
+                    I like how simple the rental information is.
+                    Payment history and maintenance requests are
+                    easy to understand.
+                </p>
+
+            </article>
+
+
+            <!-- REVIEW 3 -->
+
+            <article class="review-card" data-rating="4">
+
+                <div class="review-top">
+
+                    <div class="review-user">
+
+                        <div class="avatar">
+                            RP
+                        </div>
+
+                        <div>
+                            <h3>Rahul Patel</h3>
+                            <span>Property Manager</span>
+                        </div>
+
+                    </div>
+
+                    <span class="review-date">
+                        2 months ago
+                    </span>
+
+                </div>
+
+
+                <div class="review-stars">
+                    ★★★★☆
+                </div>
+
+
+                <p class="review-text">
+                    Managing multiple units used to involve a lot
+                    of spreadsheets. Having everything together has
+                    saved us quite a bit of time.
+                </p>
+
+            </article>
+
+
+            <!-- REVIEW 4 -->
+
+            <article class="review-card" data-rating="5">
+
+                <div class="review-top">
+
+                    <div class="review-user">
+
+                        <div class="avatar">
+                            SK
+                        </div>
+
+                        <div>
+                            <h3>Sana Khan</h3>
+                            <span>Tenant</span>
+                        </div>
+
+                    </div>
+
+                    <span class="review-date">
+                        3 months ago
+                    </span>
+
+                </div>
+
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+
+                <p class="review-text">
+                    The maintenance request process is really
+                    convenient. I can see the status without having
+                    to call the manager every time.
+                </p>
+
+            </article>
+
+
+            <!-- REVIEW 5 -->
+
+            <article class="review-card" data-rating="4">
+
+                <div class="review-top">
+
+                    <div class="review-user">
+
+                        <div class="avatar">
+                            VM
+                        </div>
+
+                        <div>
+                            <h3>Vivek Mehta</h3>
+                            <span>Property Owner</span>
+                        </div>
+
+                    </div>
+
+                    <span class="review-date">
+                        4 months ago
+                    </span>
+
+                </div>
+
+
+                <div class="review-stars">
+                    ★★★★☆
+                </div>
+
+
+                <p class="review-text">
+                    A clean and useful system for keeping property
+                    records, tenants and rent information organised.
+                </p>
+
+            </article>
+
+
+            <!-- REVIEW 6 -->
+
+            <article class="review-card" data-rating="5">
+
+                <div class="review-top">
+
+                    <div class="review-user">
+
+                        <div class="avatar">
+                            FA
+                        </div>
+
+                        <div>
+                            <h3>Farhan Ali</h3>
+                            <span>Property Manager</span>
+                        </div>
+
+                    </div>
+
+                    <span class="review-date">
+                        5 months ago
+                    </span>
+
+                </div>
+
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+
+                <p class="review-text">
+                    The property and tenant sections are especially
+                    useful for our daily work. The interface is
+                    straightforward and doesn't feel complicated.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <a href="index.html" class="logo footer-logo">
+                Estate<span>Hub</span>
+            </a>
+
+            <p>
+                Simple, reliable property management for owners,
+                managers and tenants.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>Company</h4>
+
+            <a href="about.html">About</a>
+            <a href="properties.html">Properties</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+
+        </div>
+
+
+        <div>
+
+            <h4>Contact</h4>
+
+            <p>Ahmedabad, Gujarat</p>
+            <p>+91 98765 43210</p>
+            <p>hello@estatehub.com</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div class="container">
+
+            <p>
+                © 2026 EstateHub. All rights reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/rating.js' %}"></script>
+
+</body>
+</html>

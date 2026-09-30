@@ -1,0 +1,224 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Reports · Meridian Property Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MP</div>
+          <div>
+            <strong>Meridian PM</strong><small>Property Management</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <div class="nav-section">OPERATIONS</div>
+          <a class="" href="dashboard.html"
+            ><span class="nav-icon">▦</span>Dashboard</a
+          ><a class="" href="properties.html"
+            ><span class="nav-icon">⌂</span>Properties</a
+          ><a class="" href="tenants.html"
+            ><span class="nav-icon">♙</span>Tenants</a
+          ><a class="" href="agreements.html"
+            ><span class="nav-icon">▤</span>Rental Agreements</a
+          ><a class="" href="rent.html"
+            ><span class="nav-icon">₹</span>Rent Management</a
+          ><a class="" href="payments.html"
+            ><span class="nav-icon">↔</span>Payments</a
+          ><a class="" href="maintenance.html"
+            ><span class="nav-icon">⚒</span>Maintenance</a
+          >
+          <div class="nav-section">FINANCE & REPORTING</div>
+          <a class="" href="expenses.html"
+            ><span class="nav-icon">◫</span>Expenses</a
+          ><a class="active" href="reports.html"
+            ><span class="nav-icon">▥</span>Reports</a
+          >
+          <div class="nav-section">ADMINISTRATION</div>
+          <a class="" href="users.html"
+            ><span class="nav-icon">♟</span>Users & Roles</a
+          >
+          <div class="nav-section">ACCOUNT</div>
+          <a href="settings.html"
+            ><span class="nav-icon">⚙</span>Settings & Profile</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-mini">
+            <div class="avatar">AR</div>
+            <div><strong>Aditya Rao</strong><span>Super Admin</span></div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="top-left">
+            <button class="menu-btn" aria-label="Open navigation">☰</button>
+            <div class="page-title">Reports</div>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+              ☼</button
+            ><button class="icon-btn" title="Notifications">♧</button
+            ><button class="icon-btn hide-mobile" title="Help">?</button>
+          </div>
+        </header>
+        <main class="content">
+          <div class="breadcrumb">
+            Finance & Reporting / <span>Reports</span>
+          </div>
+          <div class="page-head">
+            <div>
+              <h1>Reports</h1>
+              <p>
+                Portfolio reporting with date ranges, filters and print/export
+                actions
+              </p>
+            </div>
+            <div class="actions">
+              <button class="btn" onclick="window.print()">⎙ Print</button
+              ><button
+                class="btn primary"
+                onclick="toast('Excel export prepared', 'success')"
+              >
+                ⇩ Export
+              </button>
+            </div>
+          </div>
+          <div class="card card-pad">
+            <div class="filters">
+              <div>
+                <label class="stat-meta">From</label
+                ><input type="date" value="2026-04-01" />
+              </div>
+              <div>
+                <label class="stat-meta">To</label
+                ><input type="date" value="2026-09-13" />
+              </div>
+              <select>
+                <option>All properties</option>
+                <option>Sunrise Heights</option>
+                <option>Lakeview Residency</option></select
+              ><select>
+                <option>All reports</option>
+                <option>Rent collection</option>
+                <option>Expenses</option>
+                <option>Occupancy</option>
+                <option>Maintenance</option></select
+              ><button
+                class="btn primary"
+                onclick="toast('Report filters applied', 'success')"
+              >
+                Apply filters
+              </button>
+            </div>
+            <div class="tabs" data-tabs>
+              <button class="tab active" data-tab="collection">
+                Rent collection</button
+              ><button class="tab" data-tab="income">Income & expenses</button
+              ><button class="tab" data-tab="occupancy">Occupancy</button
+              ><button class="tab" data-tab="maintenance">Maintenance</button>
+            </div>
+            <div data-tab-panel="collection">
+              <div class="grid grid-3">
+                <div class="card stat">
+                  <div class="stat-label">COLLECTION RATE</div>
+                  <div class="stat-value">83.6%</div>
+                  <div class="stat-meta up">+4.1 pts</div>
+                </div>
+                <div class="card stat">
+                  <div class="stat-label">COLLECTED</div>
+                  <div class="stat-value">₹62.4L</div>
+                  <div class="stat-meta">This period</div>
+                </div>
+                <div class="card stat">
+                  <div class="stat-label">OUTSTANDING</div>
+                  <div class="stat-value">₹12.2L</div>
+                  <div class="stat-meta">₹3.8L overdue</div>
+                </div>
+              </div>
+              <div class="table-wrap" style="margin-top: 16px">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Expected</th>
+                      <th>Collected</th>
+                      <th>Pending</th>
+                      <th>Collection rate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Apr 2026</td>
+                      <td>₹70.1L</td>
+                      <td>₹58.4L</td>
+                      <td>₹11.7L</td>
+                      <td>83.3%</td>
+                    </tr>
+                    <tr>
+                      <td>May 2026</td>
+                      <td>₹71.8L</td>
+                      <td>₹60.9L</td>
+                      <td>₹10.9L</td>
+                      <td>84.8%</td>
+                    </tr>
+                    <tr>
+                      <td>Jun 2026</td>
+                      <td>₹72.5L</td>
+                      <td>₹61.2L</td>
+                      <td>₹11.3L</td>
+                      <td>84.4%</td>
+                    </tr>
+                    <tr>
+                      <td>Jul 2026</td>
+                      <td>₹73.1L</td>
+                      <td>₹60.8L</td>
+                      <td>₹12.3L</td>
+                      <td>83.2%</td>
+                    </tr>
+                    <tr>
+                      <td>Aug 2026</td>
+                      <td>₹74.0L</td>
+                      <td>₹62.1L</td>
+                      <td>₹11.9L</td>
+                      <td>83.9%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div data-tab-panel="income" hidden>
+              <div class="empty">
+                <strong>Income & expense report</strong>Use the date and
+                property filters above, then export the detailed ledger.
+              </div>
+            </div>
+            <div data-tab-panel="occupancy" hidden>
+              <div class="empty">
+                <strong>Occupancy report</strong>241 occupied units across 48
+                properties, 84.3% portfolio occupancy.
+              </div>
+            </div>
+            <div data-tab-panel="maintenance" hidden>
+              <div class="empty">
+                <strong>Maintenance report</strong>42 requests opened, 31
+                completed and 7 currently in progress.
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="toast-wrap"></div>
+    <div class="modal-backdrop" id="globalModal"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/reports.js' %}"></script>
+  </body>
+</html>
