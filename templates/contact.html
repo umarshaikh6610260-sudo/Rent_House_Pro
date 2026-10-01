@@ -295,147 +295,153 @@
             </div>
 
 
-            <form id="contactForm">
+            <form
+    id="contactForm"
+    method="POST"
+    action="{% url 'contact' %}"
+>
+
+    {% csrf_token %}
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>
+                Your Name
+            </label>
+
+            <input
+                type="text"
+                id="contactName"
+                name="name"
+                placeholder="Enter your full name"
+                required
+            >
+
+        </div>
 
 
-                <div class="form-grid">
+        <div class="form-group">
 
-                    <div class="form-group">
+            <label>
+                Phone Number
+            </label>
 
-                        <label>
-                            Your Name
-                        </label>
+            <input
+                type="tel"
+                id="contactPhone"
+                name="phone"
+                placeholder="+91 XXXXX XXXXX"
+                required
+            >
 
-                        <input
-                            type="text"
-                            id="contactName"
-                            placeholder="Enter your full name"
-                            required
-                        >
+        </div>
 
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Phone Number
-                        </label>
-
-                        <input
-                            type="tel"
-                            id="contactPhone"
-                            placeholder="+91 XXXXX XXXXX"
-                            required
-                        >
-
-                    </div>
-
-                </div>
+    </div>
 
 
+    <div class="form-group">
 
-                <div class="form-group">
+        <label>
+            Email Address
+        </label>
 
-                    <label>
-                        Email Address
-                    </label>
+        <input
+            type="email"
+            id="contactEmail"
+            name="email"
+            placeholder="you@example.com"
+            required
+        >
 
-                    <input
-                        type="email"
-                        id="contactEmail"
-                        placeholder="you@example.com"
-                        required
-                    >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                    <label>
-                        What can we help with?
-                    </label>
-
-                    <select
-                        id="contactSubject"
-                        required
-                    >
-
-                        <option value="">
-                            Select a service
-                        </option>
-
-                        <option>
-                            Property Management
-                        </option>
-
-                        <option>
-                            Looking for a Rental
-                        </option>
-
-                        <option>
-                            Tenant Support
-                        </option>
-
-                        <option>
-                            Maintenance
-                        </option>
-
-                        <option>
-                            Property Investment
-                        </option>
-
-                        <option>
-                            General Inquiry
-                        </option>
-
-                    </select>
-
-                </div>
+    </div>
 
 
+    <div class="form-group">
 
-                <div class="form-group">
+        <label>
+            What can we help with?
+        </label>
 
-                    <label>
-                        Message
-                    </label>
+        <select
+            id="contactSubject"
+            name="subject"
+            required
+        >
 
-                    <textarea
-                        id="contactMessage"
-                        placeholder="Tell us a little about your requirement..."
-                        rows="5"
-                        required
-                    ></textarea>
+            <option value="">
+                Select a service
+            </option>
 
-                </div>
+            <option value="Property Management">
+                Property Management
+            </option>
+
+            <option value="Looking for a Rental">
+                Looking for a Rental
+            </option>
+
+            <option value="Tenant Support">
+                Tenant Support
+            </option>
+
+            <option value="Maintenance">
+                Maintenance
+            </option>
+
+            <option value="Property Investment">
+                Property Investment
+            </option>
+
+            <option value="General Inquiry">
+                General Inquiry
+            </option>
+
+        </select>
+
+    </div>
 
 
+    <div class="form-group">
 
-                <button
-                    type="submit"
-                    class="contact-submit"
-                >
+        <label>
+            Message
+        </label>
 
-                    <span>
-                        Send Inquiry
-                    </span>
+        <textarea
+            id="contactMessage"
+            name="message"
+            placeholder="Tell us a little about your requirement..."
+            rows="5"
+            required
+        ></textarea>
 
-                    <strong>
-                        →
-                    </strong>
-
-                </button>
+    </div>
 
 
-                <p class="form-disclaimer">
-                    By submitting this form, you agree to be contacted
-                    regarding your inquiry.
-                </p>
+    <button
+        type="submit"
+        class="contact-submit"
+    >
 
-            </form>
+        <span>
+            Send Inquiry
+        </span>
+
+        <strong>
+            →
+        </strong>
+
+    </button>
+
+
+    <p class="form-disclaimer">
+        By submitting this form, you agree to be contacted
+        regarding your inquiry.
+    </p>
+
+</form>
 
         </div>
 
@@ -605,7 +611,7 @@
 
 
 
-<script src="{% static 'js/public.js' %}"></script>
+<!-- <script src="{% static 'js/public.js' %}"></script> -->
 
 </body>
 

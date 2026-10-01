@@ -1,308 +1,308 @@
-/* =========================================
-   MERIDIAN PUBLIC WEBSITE
-========================================= */
+// /* =========================================
+//    MERIDIAN PUBLIC WEBSITE
+// ========================================= */
 
 
-/* ================= MOBILE MENU ================= */
+// /* ================= MOBILE MENU ================= */
 
-const menuButton =
-    document.getElementById("mobileMenuBtn");
+// const menuButton =
+//     document.getElementById("mobileMenuBtn");
 
-const navigation =
-    document.getElementById("publicNav");
+// const navigation =
+//     document.getElementById("publicNav");
 
 
-if (menuButton && navigation) {
+// if (menuButton && navigation) {
 
-    menuButton.addEventListener("click", function () {
+//     menuButton.addEventListener("click", function () {
 
-        navigation.classList.toggle("open");
+//         navigation.classList.toggle("open");
 
-        if (navigation.classList.contains("open")) {
+//         if (navigation.classList.contains("open")) {
 
-            menuButton.textContent = "✕";
+//             menuButton.textContent = "✕";
 
-        } else {
+//         } else {
 
-            menuButton.textContent = "☰";
+//             menuButton.textContent = "☰";
 
-        }
+//         }
 
-    });
+//     });
 
-}
+// }
 
 
-/* ================= CLOSE MOBILE MENU ================= */
+// /* ================= CLOSE MOBILE MENU ================= */
 
-const navLinks =
-    document.querySelectorAll(".public-nav a");
+// const navLinks =
+//     document.querySelectorAll(".public-nav a");
 
 
-navLinks.forEach(function (link) {
+// navLinks.forEach(function (link) {
 
-    link.addEventListener("click", function () {
+//     link.addEventListener("click", function () {
 
-        if (navigation) {
+//         if (navigation) {
 
-            navigation.classList.remove("open");
+//             navigation.classList.remove("open");
 
-        }
+//         }
 
-        if (menuButton) {
+//         if (menuButton) {
 
-            menuButton.textContent = "☰";
+//             menuButton.textContent = "☰";
 
-        }
+//         }
 
-    });
+//     });
 
-});
+// });
 
 
-/* ================= SCROLL REVEAL ================= */
+// /* ================= SCROLL REVEAL ================= */
 
-const revealElements =
-    document.querySelectorAll(
-        ".service-row, .property-card, .why-point, .value-item, .service-large"
-    );
+// const revealElements =
+//     document.querySelectorAll(
+//         ".service-row, .property-card, .why-point, .value-item, .service-large"
+//     );
 
 
-if ("IntersectionObserver" in window) {
+// if ("IntersectionObserver" in window) {
 
-    const revealObserver =
-        new IntersectionObserver(
-            function (entries) {
+//     const revealObserver =
+//         new IntersectionObserver(
+//             function (entries) {
 
-                entries.forEach(function (entry) {
+//                 entries.forEach(function (entry) {
 
-                    if (entry.isIntersecting) {
+//                     if (entry.isIntersecting) {
 
-                        entry.target.style.opacity = "1";
+//                         entry.target.style.opacity = "1";
 
-                        entry.target.style.transform =
-                            "translateY(0)";
+//                         entry.target.style.transform =
+//                             "translateY(0)";
 
-                        revealObserver.unobserve(
-                            entry.target
-                        );
+//                         revealObserver.unobserve(
+//                             entry.target
+//                         );
 
-                    }
+//                     }
 
-                });
+//                 });
 
-            },
-            {
-                threshold: 0.12
-            }
-        );
+//             },
+//             {
+//                 threshold: 0.12
+//             }
+//         );
 
 
-    revealElements.forEach(function (element) {
+//     revealElements.forEach(function (element) {
 
-        element.style.opacity = "0";
+//         element.style.opacity = "0";
 
-        element.style.transform =
-            "translateY(18px)";
+//         element.style.transform =
+//             "translateY(18px)";
 
-        element.style.transition =
-            "opacity .65s ease, transform .65s ease";
+//         element.style.transition =
+//             "opacity .65s ease, transform .65s ease";
 
-        revealObserver.observe(element);
+//         revealObserver.observe(element);
 
-    });
+//     });
 
-}
+// }
 
 
-/* ================= CONTACT FORM ================= */
+// /* ================= CONTACT FORM ================= */
 
-const contactForm =
-    document.getElementById("contactForm");
+// const contactForm =
+//     document.getElementById("contactForm");
 
 
-if (contactForm) {
+// if (contactForm) {
 
-    contactForm.addEventListener(
-        "submit",
-        function (event) {
+//     contactForm.addEventListener(
+//         "submit",
+//         function (event) {
 
-            event.preventDefault();
+//             event.preventDefault();
 
-            const button =
-                contactForm.querySelector(
-                    ".contact-submit"
-                );
+//             const button =
+//                 contactForm.querySelector(
+//                     ".contact-submit"
+//                 );
 
 
-            if (!button) {
-                return;
-            }
+//             if (!button) {
+//                 return;
+//             }
 
 
-            const originalText =
-                button.querySelector("span");
+//             const originalText =
+//                 button.querySelector("span");
 
 
-            button.disabled = true;
+//             button.disabled = true;
 
-            originalText.textContent =
-                "Sending...";
+//             originalText.textContent =
+//                 "Sending...";
 
 
-            setTimeout(function () {
+//             setTimeout(function () {
 
-                originalText.textContent =
-                    "Inquiry Sent ✓";
+//                 originalText.textContent =
+//                     "Inquiry Sent ✓";
 
 
-                contactForm.reset();
+//                 contactForm.reset();
 
 
-                setTimeout(function () {
+//                 setTimeout(function () {
 
-                    originalText.textContent =
-                        "Send Inquiry";
+//                     originalText.textContent =
+//                         "Send Inquiry";
 
-                    button.disabled = false;
+//                     button.disabled = false;
 
-                }, 1800);
+//                 }, 1800);
 
 
-            }, 900);
+//             }, 900);
 
-        }
-    );
+//         }
+//     );
 
-}
+// }
 
 
-/* ================= HEADER SHADOW ================= */
+// /* ================= HEADER SHADOW ================= */
 
-window.addEventListener("scroll", function () {
+// window.addEventListener("scroll", function () {
 
-    const header =
-        document.querySelector(".public-header");
+//     const header =
+//         document.querySelector(".public-header");
 
 
-    if (!header) {
-        return;
-    }
+//     if (!header) {
+//         return;
+//     }
 
 
-    if (window.scrollY > 20) {
+//     if (window.scrollY > 20) {
 
-        header.style.boxShadow =
-            "0 5px 20px rgba(0,0,0,.05)";
+//         header.style.boxShadow =
+//             "0 5px 20px rgba(0,0,0,.05)";
 
-    } else {
+//     } else {
 
-        header.style.boxShadow =
-            "none";
+//         header.style.boxShadow =
+//             "none";
 
-    }
+//     }
 
-});
+// });
 
-/* =========================================================
-   NAVBAR PROPERTY SEARCH
-========================================================= */
+// /* =========================================================
+//    NAVBAR PROPERTY SEARCH
+// ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", function () {
 
-    const searchInput = document.getElementById("propertySearch");
-    const searchBtn = document.getElementById("searchBtn");
-    const searchResults = document.getElementById("searchResults");
+//     const searchInput = document.getElementById("propertySearch");
+//     const searchBtn = document.getElementById("searchBtn");
+//     const searchResults = document.getElementById("searchResults");
 
-    if (!searchInput || !searchBtn) {
-        return;
-    }
+//     if (!searchInput || !searchBtn) {
+//         return;
+//     }
 
 
-    /* ================= SEARCH ================= */
+//     /* ================= SEARCH ================= */
 
-    function performSearch() {
+//     function performSearch() {
 
-        const query = searchInput.value.trim();
+//         const query = searchInput.value.trim();
 
-        if (!query) {
+//         if (!query) {
 
-            searchInput.focus();
+//             searchInput.focus();
 
-            return;
-        }
+//             return;
+//         }
 
 
-        /* Send search to properties page */
+//         /* Send search to properties page */
 
-        window.location.href =
-            "public-properties.html?search=" +
-            encodeURIComponent(query);
+//         window.location.href =
+//             "public-properties.html?search=" +
+//             encodeURIComponent(query);
 
-    }
+//     }
 
 
-    /* ================= BUTTON ================= */
+//     /* ================= BUTTON ================= */
 
-    searchBtn.addEventListener("click", function () {
+//     searchBtn.addEventListener("click", function () {
 
-        performSearch();
+//         performSearch();
 
-    });
+//     });
 
 
-    /* ================= ENTER KEY ================= */
+//     /* ================= ENTER KEY ================= */
 
-    searchInput.addEventListener("keydown", function (event) {
+//     searchInput.addEventListener("keydown", function (event) {
 
-        if (event.key === "Enter") {
+//         if (event.key === "Enter") {
 
-            event.preventDefault();
+//             event.preventDefault();
 
-            performSearch();
+//             performSearch();
 
-        }
+//         }
 
-    });
+//     });
 
 
-    /* ================= INPUT EFFECT ================= */
+//     /* ================= INPUT EFFECT ================= */
 
-    searchInput.addEventListener("input", function () {
+//     searchInput.addEventListener("input", function () {
 
-        const value = searchInput.value.trim();
+//         const value = searchInput.value.trim();
 
-        if (value.length > 0) {
+//         if (value.length > 0) {
 
-            searchResults.classList.add("show");
+//             searchResults.classList.add("show");
 
-            searchResults.innerHTML = `
-                <div class="search-no-result">
-                    Press Enter to search for "<strong>${value}</strong>"
-                </div>
-            `;
+//             searchResults.innerHTML = `
+//                 <div class="search-no-result">
+//                     Press Enter to search for "<strong>${value}</strong>"
+//                 </div>
+//             `;
 
-        } else {
+//         } else {
 
-            searchResults.classList.remove("show");
+//             searchResults.classList.remove("show");
 
-            searchResults.innerHTML = "";
+//             searchResults.innerHTML = "";
 
-        }
+//         }
 
-    });
+//     });
 
 
-    /* ================= CLICK OUTSIDE ================= */
+//     /* ================= CLICK OUTSIDE ================= */
 
-    document.addEventListener("click", function (event) {
+//     document.addEventListener("click", function (event) {
 
-        if (!event.target.closest(".nav-search")) {
+//         if (!event.target.closest(".nav-search")) {
 
-            searchResults.classList.remove("show");
+//             searchResults.classList.remove("show");
 
-        }
+//         }
 
-    });
+//     });
 
-});
+// });

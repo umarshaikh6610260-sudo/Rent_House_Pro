@@ -40,19 +40,21 @@
 
             <span class="search-icon">⌕</span>
 
-            <input
-                type="search"
-                id="propertySearch"
-                placeholder="Search properties..."
-                autocomplete="off"
-            >
+            <form method="GET" action="{% url 'properties' %}" class="nav-search">
 
-            <button
-                type="button"
-                id="searchBtn"
-                aria-label="Search">
-                →
-            </button>
+    <input
+        type="search"
+        name="search"
+        id="propertySearch"
+        placeholder="Search properties..."
+        value="{{ search_query }}"
+    >
+
+    <button type="submit" id="searchBtn">
+        ⌕
+    </button>
+
+</form>
 
             <!-- SEARCH RESULTS -->
             <div
@@ -718,7 +720,7 @@
 
 
 
-<script src="{% static 'js/public.js' %}"></script>
+<!-- <script src="{% static 'js/public.js' %}"></script> -->
 
 </body>
 

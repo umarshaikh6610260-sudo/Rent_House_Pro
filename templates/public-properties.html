@@ -145,6 +145,7 @@
     <div class="section-top">
 
         <div>
+
             <span class="section-label">
                 CURRENTLY AVAILABLE
             </span>
@@ -157,16 +158,19 @@
                 Explore carefully maintained homes and
                 apartments managed by our property team.
             </p>
+
         </div>
 
-        <!-- <a href="{% url 'properties' %}" class="under-link">
+        <a href="{% url 'properties' %}" class="under-link">
             View all properties →
-        </a> -->
+        </a>
 
     </div>
 
 
-    <!-- Django automatically creates cards -->
+    <!-- ==========================================
+         PROPERTY GRID
+    =========================================== -->
 
     <div class="property-grid">
 
@@ -174,32 +178,58 @@
 
         <article class="property-card">
 
-            <!-- PROPERTY IMAGE -->
+
+            <!-- ==================================
+                 PROPERTY IMAGE
+            =================================== -->
 
             <div class="property-image">
 
-                <img
-                    src="{{ flat.image_url }}"
-                    alt="{{ flat.title }}"
-                    loading="lazy"
-                >
+                {% if flat.image_url %}
+
+                    <img
+                        src="{{ flat.image_url }}"
+                        alt="{{ flat.title }}"
+                        loading="lazy"
+                    >
+
+                {% else %}
+
+                    <div class="property-no-image">
+                        <span>No Image Available</span>
+                    </div>
+
+                {% endif %}
+
+
+                <!-- AVAILABILITY -->
 
                 {% if flat.available %}
+
                     <span class="image-tag">
                         AVAILABLE
                     </span>
+
                 {% else %}
+
                     <span class="image-tag rented-tag">
                         RENTED
                     </span>
+
                 {% endif %}
 
             </div>
 
 
-            <!-- PROPERTY CONTENT -->
+
+            <!-- ==================================
+                 PROPERTY CONTENT
+            =================================== -->
 
             <div class="property-card-content">
+
+
+                <!-- TYPE + CONDITION -->
 
                 <div class="property-card-top">
 
@@ -214,50 +244,85 @@
                 </div>
 
 
+
+                <!-- TITLE -->
+
                 <h3>
                     {{ flat.title }}
                 </h3>
 
 
+
+                <!-- LOCATION -->
+
                 <p class="property-location">
+
+                    <span>📍</span>
+
                     {{ flat.location }}, {{ flat.city }}
+
                 </p>
 
 
-                <!-- PROPERTY DETAILS -->
+
+                <!-- ==================================
+                     PROPERTY BASIC INFO
+                =================================== -->
 
                 <div class="property-info">
 
+
                     <div>
+
                         <strong>
                             {{ flat.bedrooms }}
                         </strong>
-                        <span>Beds</span>
+
+                        <span>
+                            Beds
+                        </span>
+
                     </div>
 
+
                     <div>
+
                         <strong>
                             {{ flat.bathrooms }}
                         </strong>
-                        <span>Baths</span>
+
+                        <span>
+                            Baths
+                        </span>
+
                     </div>
 
+
                     <div>
+
                         <strong>
                             {{ flat.area_sqft }}
                         </strong>
-                        <span>Sq Ft</span>
+
+                        <span>
+                            Sq Ft
+                        </span>
+
                     </div>
+
 
                 </div>
 
 
-                <!-- PRICE -->
+
+                <!-- ==================================
+                     PRICE
+                =================================== -->
 
                 <div class="property-price">
 
                     <strong>
-                        ₹{{ flat.rent }}
+                        ₹{{ flat.rent|floatformat:0 }}
                     </strong>
 
                     <span>
@@ -267,42 +332,135 @@
                 </div>
 
 
-                <!-- EXTRA DETAILS -->
+
+                <!-- ==================================
+                     EXTRA DETAILS
+                =================================== -->
 
                 <div class="property-meta">
+
+
+                    <!-- BHK -->
 
                     <span>
                         {{ flat.bhk }} BHK
                     </span>
 
+
+                    <!-- FURNISHING -->
+
                     <span>
                         {{ flat.furnishing }}
                     </span>
 
+
+                    <!-- PARKING -->
+
                     {% if flat.parking %}
-                        <span>Parking</span>
+
+                        <span>
+                            Parking
+                        </span>
+
                     {% endif %}
+
+
+                    <!-- BALCONY -->
+
+                    {% if flat.balcony %}
+
+                        <span>
+                            Balcony
+                        </span>
+
+                    {% endif %}
+
+
+                    <!-- PETS -->
+
+                    {% if flat.pets_allowed %}
+
+                        <span>
+                            Pets Allowed
+                        </span>
+
+                    {% endif %}
+
 
                 </div>
 
 
-                <!-- ACTION -->
+
+                <!-- ==================================
+                     FLOOR INFORMATION
+                =================================== -->
+
+                <div class="property-floor">
+
+                    Floor
+                    {{ flat.floor }}
+
+                    of
+
+                    {{ flat.total_floors }}
+
+                </div>
+
+
+
+                <!-- ==================================
+                     AMENITIES
+                =================================== -->
+
+                {% if flat.amenities %}
+
+                    <div class="property-amenities">
+
+                        {% for amenity in flat.amenities|slice:":3" %}
+
+                            <span>
+                                {{ amenity }}
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+
+
+                <!-- ==================================
+                     ACTION
+                =================================== -->
 
                 <a
                     href="{% url 'properties' %}"
                     class="primary-btn dark-btn property-view-btn"
                 >
-                    View Property
-                    <span>→</span>
+
+                    <span>
+                        View Property
+                    </span>
+
+                    <span>
+                        →
+                    </span>
+
                 </a>
+
 
             </div>
 
         </article>
 
+
         {% empty %}
 
-        <!-- No property available -->
+
+        <!-- ==================================
+             EMPTY STATE
+        =================================== -->
 
         <div class="no-properties">
 
@@ -311,10 +469,19 @@
             </h3>
 
             <p>
-                Please check again later.
+                We currently don't have any properties
+                available for rent.
             </p>
 
+            <a
+                href="{% url 'contact' %}"
+                class="primary-btn dark-btn"
+            >
+                Contact Us →
+            </a>
+
         </div>
+
 
         {% endfor %}
 
@@ -442,7 +609,7 @@
 </footer>
 
 
-<script src="{% static 'js/public.js' %}"></script>
+<!-- <script src="{% static 'js/public.js' %}"></script> -->
 
 </body>
 

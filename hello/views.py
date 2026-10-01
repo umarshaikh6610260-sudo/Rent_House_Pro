@@ -1,953 +1,306 @@
+import json
+from pathlib import Path
+
+from django.conf import settings
+from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render
 
+from .models import Property, ContactInquiry
 
+
+# ==========================================
+# HOME
+# ==========================================
 
 def home(request):
-    Data = [
-        {
-            "id": 1,
-            "title": "Modern 2 BHK Apartment",
-            "bhk": 2,
-            "property_type": "Apartment",
-            "rent": 18000,
-            "deposit": 50000,
-            "furnishing": "Semi-Furnished",
-            "condition": "Good",
-            "area_sqft": 1050,
-            "bedrooms": 2,
-            "bathrooms": 2,
-            "location": "Satellite",
-            "city": "Ahmedabad",
-            "available": True,
-            "parking": True,
-            "balcony": True,
-            "pets_allowed": False,
-            "floor": 4,
-            "total_floors": 8,
-            "image_url": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
-        },
-        {
-            "id": 2,
-            "title": "Premium 3 BHK Family Home",
-            "bhk": 3,
-            "property_type": "Apartment",
-            "rent": 28000,
-            "deposit": 70000,
-            "furnishing": "Fully Furnished",
-            "condition": "Excellent",
-            "area_sqft": 1450,
-            "bedrooms": 3,
-            "bathrooms": 3,
-            "location": "Prahlad Nagar",
-            "city": "Ahmedabad",
-            "available": True,
-            "parking": True,
-            "balcony": True,
-            "pets_allowed": True,
-            "floor": 6,
-            "total_floors": 10,
-            "image_url": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d"
-        },
-        {
-    "id": 3,
-    "title": "Affordable 1 BHK Flat",
-    "bhk": 1,
-    "property_type": "Apartment",
-    "rent": 9500,
-    "deposit": 25000,
-    "furnishing": "Unfurnished",
-    "condition": "Good",
-    "area_sqft": 600,
-    "bedrooms": 1,
-    "bathrooms": 1,
-    "location": "Chandkheda",
-    "city": "Ahmedabad",
-    "available": True,
-    "parking": True,
-    "balcony": False,
-    "pets_allowed": True,
-    "floor": 2,
-    "total_floors": 5,
-    "amenities": ["Lift", "Parking", "Security"],
-    "image_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-  },
-  {
-    "id": 4,
-    "title": "Luxury 3 BHK Apartment",
-    "bhk": 3,
-    "property_type": "Luxury Apartment",
-    "rent": 45000,
-    "deposit": 120000,
-    "furnishing": "Fully Furnished",
-    "condition": "Excellent",
-    "area_sqft": 2100,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "location": "Thaltej",
-    "city": "Ahmedabad",
-    "available": True,
-    "parking": True,
-    "balcony": True,
-    "pets_allowed": False,
-    "floor": 12,
-    "total_floors": 18,
-    "amenities": ["Swimming Pool", "Gym", "Club House", "Security"],
-    "image_url": "https://images.unsplash.com/photo-1600607688969-a5bfcd646154"
-  },
-  {
-    "id": 5,
-    "title": "Fully Furnished 2 BHK",
-    "bhk": 2,
-    "property_type": "Apartment",
-    "rent": 24000,
-    "deposit": 70000,
-    "furnishing": "Fully Furnished",
-    "condition": "Excellent",
-    "area_sqft": 1100,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "location": "SG Highway",
-    "city": "Ahmedabad",
-    "available": True,
-    "parking": True,
-    "balcony": True,
-    "pets_allowed": False,
-    "floor": 7,
-    "total_floors": 12,
-    "amenities": ["Lift", "Gym", "Swimming Pool", "Security"],
-    "image_url": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d"
-  },
-  {
-    "id": 6,
-    "title": "Budget 2 BHK Home",
-    "bhk": 2,
-    "property_type": "Apartment",
-    "rent": 13500,
-    "deposit": 35000,
-    "furnishing": "Semi-Furnished",
-    "condition": "Average",
-    "area_sqft": 900,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "location": "Naroda",
-    "city": "Ahmedabad",
-    "available": True,
-    "parking": True,
-    "balcony": True,
-    "pets_allowed": True,
-    "floor": 2,
-    "total_floors": 5,
-    "amenities": ["Parking", "Lift", "Security"],
-    "image_url": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea"
-  },
-  # {
-  #   "id": 7,
-  #   "title": "Premium 4 BHK Villa",
-  #   "bhk": 4,
-  #   "property_type": "Villa",
-  #   "rent": 65000,
-  #   "deposit": 180000,
-  #   "furnishing": "Semi-Furnished",
-  #   "condition": "Excellent",
-  #   "area_sqft": 3200,
-  #   "bedrooms": 4,
-  #   "bathrooms": 4,
-  #   "location": "Shela",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": True,
-  #   "floor": 2,
-  #   "total_floors": 2,
-  #   "amenities": ["Garden", "Swimming Pool", "Club House", "Security"],
-  #   "image_url": "https://images.unsplash.com/photo-1600585154526-990dced4db0d"
-  # },
-  # {
-  #   "id": 8,
-  #   "title": "Cozy 1 BHK Apartment",
-  #   "bhk": 1,
-  #   "property_type": "Apartment",
-  #   "rent": 12000,
-  #   "deposit": 30000,
-  #   "furnishing": "Fully Furnished",
-  #   "condition": "Very Good",
-  #   "area_sqft": 650,
-  #   "bedrooms": 1,
-  #   "bathrooms": 1,
-  #   "location": "Prahlad Nagar",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": False,
-  #   "floor": 5,
-  #   "total_floors": 10,
-  #   "amenities": ["Lift", "Security", "CCTV", "Gym"],
-  #   "image_url": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0"
-  # },
-  # {
-  #   "id": 9,
-  #   "title": "Family 3 BHK Flat",
-  #   "bhk": 3,
-  #   "property_type": "Apartment",
-  #   "rent": 26000,
-  #   "deposit": 75000,
-  #   "furnishing": "Semi-Furnished",
-  #   "condition": "Good",
-  #   "area_sqft": 1450,
-  #   "bedrooms": 3,
-  #   "bathrooms": 2,
-  #   "location": "Motera",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": True,
-  #   "floor": 6,
-  #   "total_floors": 10,
-  #   "amenities": ["Lift", "Security", "Garden", "CCTV"],
-  #   "image_url": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3"
-  # },
-  # {
-  #   "id": 10,
-  #   "title": "Affordable Studio",
-  #   "bhk": 1,
-  #   "property_type": "Studio",
-  #   "rent": 7500,
-  #   "deposit": 15000,
-  #   "furnishing": "Fully Furnished",
-  #   "condition": "Good",
-  #   "area_sqft": 400,
-  #   "bedrooms": 1,
-  #   "bathrooms": 1,
-  #   "location": "Memnagar",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": False,
-  #   "balcony": False,
-  #   "pets_allowed": False,
-  #   "floor": 2,
-  #   "total_floors": 4,
-  #   "amenities": ["WiFi", "Security", "CCTV"],
-  #   "image_url": "https://images.unsplash.com/photo-1600607688969-a5bfcd646154"
-  # },
-  # {
-  #   "id": 11,
-  #   "title": "Independent 2 BHK House",
-  #   "bhk": 2,
-  #   "property_type": "Independent House",
-  #   "rent": 22000,
-  #   "deposit": 60000,
-  #   "furnishing": "Semi-Furnished",
-  #   "condition": "Good",
-  #   "area_sqft": 1250,
-  #   "bedrooms": 2,
-  #   "bathrooms": 2,
-  #   "location": "Maninagar",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": True,
-  #   "floor": 1,
-  #   "total_floors": 1,
-  #   "amenities": ["Garden", "Parking", "Terrace"],
-  #   "image_url": "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde"
-  # },
-  # {
-  #   "id": 12,
-  #   "title": "Modern 2 BHK Near Metro",
-  #   "bhk": 2,
-  #   "property_type": "Apartment",
-  #   "rent": 19000,
-  #   "deposit": 55000,
-  #   "furnishing": "Semi-Furnished",
-  #   "condition": "Very Good",
-  #   "area_sqft": 1000,
-  #   "bedrooms": 2,
-  #   "bathrooms": 2,
-  #   "location": "Vasna",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": False,
-  #   "floor": 8,
-  #   "total_floors": 14,
-  #   "amenities": ["Lift", "Security", "Gym", "Metro Connectivity"],
-  #   "image_url": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
-  # },
-  # {
-  #   "id": 13,
-  #   "title": "Large 4 BHK Penthouse",
-  #   "bhk": 4,
-  #   "property_type": "Penthouse",
-  #   "rent": 85000,
-  #   "deposit": 250000,
-  #   "furnishing": "Fully Furnished",
-  #   "condition": "Brand New",
-  #   "area_sqft": 3600,
-  #   "bedrooms": 4,
-  #   "bathrooms": 5,
-  #   "location": "Shilaj",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": True,
-  #   "floor": 20,
-  #   "total_floors": 20,
-  #   "amenities": ["Private Terrace", "Swimming Pool", "Gym", "Club House"],
-  #   "image_url": "https://images.unsplash.com/photo-1600585154526-990dced4db0d"
-  # },
-  # {
-  #   "id": 14,
-  #   "title": "Peaceful 2 BHK Home",
-  #   "bhk": 2,
-  #   "property_type": "Independent House",
-  #   "rent": 20000,
-  #   "deposit": 60000,
-  #   "furnishing": "Unfurnished",
-  #   "condition": "Very Good",
-  #   "area_sqft": 1350,
-  #   "bedrooms": 2,
-  #   "bathrooms": 2,
-  #   "location": "Bopal",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": True,
-  #   "floor": 1,
-  #   "total_floors": 1,
-  #   "amenities": ["Private Parking", "Garden", "Terrace"],
-  #   "image_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-  # },
-  # {
-  #   "id": 15,
-  #   "title": "Executive 1 BHK",
-  #   "bhk": 1,
-  #   "property_type": "Apartment",
-  #   "rent": 15000,
-  #   "deposit": 40000,
-  #   "furnishing": "Fully Furnished",
-  #   "condition": "Excellent",
-  #   "area_sqft": 700,
-  #   "bedrooms": 1,
-  #   "bathrooms": 1,
-  #   "location": "C G Road",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": False,
-  #   "pets_allowed": False,
-  #   "floor": 10,
-  #   "total_floors": 15,
-  #   "amenities": ["Lift", "Security", "CCTV", "WiFi"],
-  #   "image_url": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0"
-  # },
-  # {
-  #   "id": 16,
-  #   "title": "Spacious 3 BHK Home",
-  #   "bhk": 3,
-  #   "property_type": "Independent House",
-  #   "rent": 32000,
-  #   "deposit": 90000,
-  #   "furnishing": "Semi-Furnished",
-  #   "condition": "Very Good",
-  #   "area_sqft": 1800,
-  #   "bedrooms": 3,
-  #   "bathrooms": 3,
-  #   "location": "Bodakdev",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": True,
-  #   "floor": 1,
-  #   "total_floors": 2,
-  #   "amenities": ["Garden", "Parking", "Modular Kitchen"],
-  #   "image_url": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea"
-  # },
-  # {
-  #   "id": 17,
-  #   "title": "Simple 1 BHK Home",
-  #   "bhk": 1,
-  #   "property_type": "Apartment",
-  #   "rent": 8500,
-  #   "deposit": 20000,
-  #   "furnishing": "Unfurnished",
-  #   "condition": "Average",
-  #   "area_sqft": 580,
-  #   "bedrooms": 1,
-  #   "bathrooms": 1,
-  #   "location": "Ghatlodia",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": False,
-  #   "pets_allowed": True,
-  #   "floor": 2,
-  #   "total_floors": 5,
-  #   "amenities": ["Parking", "Lift", "Security"],
-  #   "image_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-  # },
-  # {
-  #   "id": 18,
-  #   "title": "Premium 3 BHK Apartment",
-  #   "bhk": 3,
-  #   "property_type": "Apartment",
-  #   "rent": 35000,
-  #   "deposit": 100000,
-  #   "furnishing": "Fully Furnished",
-  #   "condition": "Excellent",
-  #   "area_sqft": 1650,
-  #   "bedrooms": 3,
-  #   "bathrooms": 3,
-  #   "location": "Ambawadi",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": False,
-  #   "floor": 9,
-  #   "total_floors": 15,
-  #   "amenities": ["Gym", "Lift", "Security", "CCTV", "Garden"],
-  #   "image_url": "https://images.unsplash.com/photo-1600607688969-a5bfcd646154"
-  # },
-  # {
-  #   "id": 19,
-  #   "title": "Comfortable 2 BHK Flat",
-  #   "bhk": 2,
-  #   "property_type": "Apartment",
-  #   "rent": 16000,
-  #   "deposit": 45000,
-  #   "furnishing": "Unfurnished",
-  #   "condition": "Good",
-  #   "area_sqft": 950,
-  #   "bedrooms": 2,
-  #   "bathrooms": 2,
-  #   "location": "Vastrapur",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": False,
-  #   "floor": 3,
-  #   "total_floors": 7,
-  #   "amenities": ["Lift", "Security", "CCTV", "Garden"],
-  #   "image_url": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3"
-  # },
-  # {
-  #   "id": 20,
-  #   "title": "Brand New 4 BHK Villa",
-  #   "bhk": 4,
-  #   "property_type": "Villa",
-  #   "rent": 55000,
-  #   "deposit": 150000,
-  #   "furnishing": "Semi-Furnished",
-  #   "condition": "Brand New",
-  #   "area_sqft": 2900,
-  #   "bedrooms": 4,
-  #   "bathrooms": 4,
-  #   "location": "South Bopal",
-  #   "city": "Ahmedabad",
-  #   "available": True,
-  #   "parking": True,
-  #   "balcony": True,
-  #   "pets_allowed": True,
-  #   "floor": 2,
-  #   "total_floors": 2,
-  #   "amenities": ["Garden", "Terrace", "Parking", "Security"],
-  #   "image_url": "https://images.unsplash.com/photo-1600585154526-990dced4db0d"
-  # }
-]
+    properties = Property.objects.all().order_by("-created_at")
 
-    return render(request, "index.html", {
-        "Flat_Data": Data
-    })
+    return render(
+        request,
+        "index.html",
+        {
+            "Flat_Data": properties
+        }
+    )
+
+
+# ==========================================
+# ABOUT
+# ==========================================
 
 def about(request):
     return render(request, "about.html")
 
 
+# ==========================================
+# SERVICES
+# ==========================================
+
 def services(request):
     return render(request, "services.html")
 
 
-def properties(request):
-    Data = [
-            {
-                "id": 1,
-                "title": "Modern 2 BHK Apartment",
-                "bhk": 2,
-                "property_type": "Apartment",
-                "rent": 18000,
-                "deposit": 50000,
-                "furnishing": "Semi-Furnished",
-                "condition": "Good",
-                "area_sqft": 1050,
-                "bedrooms": 2,
-                "bathrooms": 2,
-                "location": "Satellite",
-                "city": "Ahmedabad",
-                "available": True,
-                "parking": True,
-                "balcony": True,
-                "pets_allowed": False,
-                "floor": 4,
-                "total_floors": 8,
-                "image_url": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
-            },
-            {
-                "id": 2,
-                "title": "Premium 3 BHK Family Home",
-                "bhk": 3,
-                "property_type": "Apartment",
-                "rent": 28000,
-                "deposit": 70000,
-                "furnishing": "Fully Furnished",
-                "condition": "Excellent",
-                "area_sqft": 1450,
-                "bedrooms": 3,
-                "bathrooms": 3,
-                "location": "Prahlad Nagar",
-                "city": "Ahmedabad",
-                "available": True,
-                "parking": True,
-                "balcony": True,
-                "pets_allowed": True,
-                "floor": 6,
-                "total_floors": 10,
-                "image_url": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d"
-            },
-            {
-        "id": 3,
-        "title": "Affordable 1 BHK Flat",
-        "bhk": 1,
-        "property_type": "Apartment",
-        "rent": 9500,
-        "deposit": 25000,
-        "furnishing": "Unfurnished",
-        "condition": "Good",
-        "area_sqft": 600,
-        "bedrooms": 1,
-        "bathrooms": 1,
-        "location": "Chandkheda",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": False,
-        "pets_allowed": True,
-        "floor": 2,
-        "total_floors": 5,
-        "amenities": ["Lift", "Parking", "Security"],
-        "image_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-      },
-      {
-        "id": 4,
-        "title": "Luxury 3 BHK Apartment",
-        "bhk": 3,
-        "property_type": "Luxury Apartment",
-        "rent": 45000,
-        "deposit": 120000,
-        "furnishing": "Fully Furnished",
-        "condition": "Excellent",
-        "area_sqft": 2100,
-        "bedrooms": 3,
-        "bathrooms": 3,
-        "location": "Thaltej",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": False,
-        "floor": 12,
-        "total_floors": 18,
-        "amenities": ["Swimming Pool", "Gym", "Club House", "Security"],
-        "image_url": "https://images.unsplash.com/photo-1600607688969-a5bfcd646154"
-      },
-      {
-        "id": 5,
-        "title": "Fully Furnished 2 BHK",
-        "bhk": 2,
-        "property_type": "Apartment",
-        "rent": 24000,
-        "deposit": 70000,
-        "furnishing": "Fully Furnished",
-        "condition": "Excellent",
-        "area_sqft": 1100,
-        "bedrooms": 2,
-        "bathrooms": 2,
-        "location": "SG Highway",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": False,
-        "floor": 7,
-        "total_floors": 12,
-        "amenities": ["Lift", "Gym", "Swimming Pool", "Security"],
-        "image_url": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d"
-      },
-      {
-        "id": 6,
-        "title": "Budget 2 BHK Home",
-        "bhk": 2,
-        "property_type": "Apartment",
-        "rent": 13500,
-        "deposit": 35000,
-        "furnishing": "Semi-Furnished",
-        "condition": "Average",
-        "area_sqft": 900,
-        "bedrooms": 2,
-        "bathrooms": 1,
-        "location": "Naroda",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": True,
-        "floor": 2,
-        "total_floors": 5,
-        "amenities": ["Parking", "Lift", "Security"],
-        "image_url": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea"
-      },
-      {
-        "id": 7,
-        "title": "Premium 4 BHK Villa",
-        "bhk": 4,
-        "property_type": "Villa",
-        "rent": 65000,
-        "deposit": 180000,
-        "furnishing": "Semi-Furnished",
-        "condition": "Excellent",
-        "area_sqft": 3200,
-        "bedrooms": 4,
-        "bathrooms": 4,
-        "location": "Shela",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": True,
-        "floor": 2,
-        "total_floors": 2,
-        "amenities": ["Garden", "Swimming Pool", "Club House", "Security"],
-        "image_url": "https://images.unsplash.com/photo-1600585154526-990dced4db0d"
-      },
-      {
-        "id": 8,
-        "title": "Cozy 1 BHK Apartment",
-        "bhk": 1,
-        "property_type": "Apartment",
-        "rent": 12000,
-        "deposit": 30000,
-        "furnishing": "Fully Furnished",
-        "condition": "Very Good",
-        "area_sqft": 650,
-        "bedrooms": 1,
-        "bathrooms": 1,
-        "location": "Prahlad Nagar",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": False,
-        "floor": 5,
-        "total_floors": 10,
-        "amenities": ["Lift", "Security", "CCTV", "Gym"],
-        "image_url": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0"
-      },
-      {
-        "id": 9,
-        "title": "Family 3 BHK Flat",
-        "bhk": 3,
-        "property_type": "Apartment",
-        "rent": 26000,
-        "deposit": 75000,
-        "furnishing": "Semi-Furnished",
-        "condition": "Good",
-        "area_sqft": 1450,
-        "bedrooms": 3,
-        "bathrooms": 2,
-        "location": "Motera",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": True,
-        "floor": 6,
-        "total_floors": 10,
-        "amenities": ["Lift", "Security", "Garden", "CCTV"],
-        "image_url": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3"
-      },
-      {
-        "id": 10,
-        "title": "Affordable Studio",
-        "bhk": 1,
-        "property_type": "Studio",
-        "rent": 7500,
-        "deposit": 15000,
-        "furnishing": "Fully Furnished",
-        "condition": "Good",
-        "area_sqft": 400,
-        "bedrooms": 1,
-        "bathrooms": 1,
-        "location": "Memnagar",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": False,
-        "balcony": False,
-        "pets_allowed": False,
-        "floor": 2,
-        "total_floors": 4,
-        "amenities": ["WiFi", "Security", "CCTV"],
-        "image_url": "https://images.unsplash.com/photo-1600607688969-a5bfcd646154"
-      },
-      {
-        "id": 11,
-        "title": "Independent 2 BHK House",
-        "bhk": 2,
-        "property_type": "Independent House",
-        "rent": 22000,
-        "deposit": 60000,
-        "furnishing": "Semi-Furnished",
-        "condition": "Good",
-        "area_sqft": 1250,
-        "bedrooms": 2,
-        "bathrooms": 2,
-        "location": "Maninagar",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": True,
-        "floor": 1,
-        "total_floors": 1,
-        "amenities": ["Garden", "Parking", "Terrace"],
-        "image_url": "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde"
-      },
-      {
-        "id": 12,
-        "title": "Modern 2 BHK Near Metro",
-        "bhk": 2,
-        "property_type": "Apartment",
-        "rent": 19000,
-        "deposit": 55000,
-        "furnishing": "Semi-Furnished",
-        "condition": "Very Good",
-        "area_sqft": 1000,
-        "bedrooms": 2,
-        "bathrooms": 2,
-        "location": "Vasna",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": False,
-        "floor": 8,
-        "total_floors": 14,
-        "amenities": ["Lift", "Security", "Gym", "Metro Connectivity"],
-        "image_url": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
-      },
-      {
-        "id": 13,
-        "title": "Large 4 BHK Penthouse",
-        "bhk": 4,
-        "property_type": "Penthouse",
-        "rent": 85000,
-        "deposit": 250000,
-        "furnishing": "Fully Furnished",
-        "condition": "Brand New",
-        "area_sqft": 3600,
-        "bedrooms": 4,
-        "bathrooms": 5,
-        "location": "Shilaj",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": True,
-        "floor": 20,
-        "total_floors": 20,
-        "amenities": ["Private Terrace", "Swimming Pool", "Gym", "Club House"],
-        "image_url": "https://images.unsplash.com/photo-1600585154526-990dced4db0d"
-      },
-      {
-        "id": 14,
-        "title": "Peaceful 2 BHK Home",
-        "bhk": 2,
-        "property_type": "Independent House",
-        "rent": 20000,
-        "deposit": 60000,
-        "furnishing": "Unfurnished",
-        "condition": "Very Good",
-        "area_sqft": 1350,
-        "bedrooms": 2,
-        "bathrooms": 2,
-        "location": "Bopal",
-        "city": "Ahmedabad",
-        "available": True,
-        "parking": True,
-        "balcony": True,
-        "pets_allowed": True,
-        "floor": 1,
-        "total_floors": 1,
-        "amenities": ["Private Parking", "Garden", "Terrace"],
-        "image_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-      },
-    #   {
-    #     "id": 15,
-    #     "title": "Executive 1 BHK",
-    #     "bhk": 1,
-    #     "property_type": "Apartment",
-    #     "rent": 15000,
-    #     "deposit": 40000,
-    #     "furnishing": "Fully Furnished",
-    #     "condition": "Excellent",
-    #     "area_sqft": 700,
-    #     "bedrooms": 1,
-    #     "bathrooms": 1,
-    #     "location": "C G Road",
-    #     "city": "Ahmedabad",
-    #     "available": True,
-    #     "parking": True,
-    #     "balcony": False,
-    #     "pets_allowed": False,
-    #     "floor": 10,
-    #     "total_floors": 15,
-    #     "amenities": ["Lift", "Security", "CCTV", "WiFi"],
-    #     "image_url": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0"
-    #   },
-    #   {
-    #     "id": 16,
-    #     "title": "Spacious 3 BHK Home",
-    #     "bhk": 3,
-    #     "property_type": "Independent House",
-    #     "rent": 32000,
-    #     "deposit": 90000,
-    #     "furnishing": "Semi-Furnished",
-    #     "condition": "Very Good",
-    #     "area_sqft": 1800,
-    #     "bedrooms": 3,
-    #     "bathrooms": 3,
-    #     "location": "Bodakdev",
-    #     "city": "Ahmedabad",
-    #     "available": True,
-    #     "parking": True,
-    #     "balcony": True,
-    #     "pets_allowed": True,
-    #     "floor": 1,
-    #     "total_floors": 2,
-    #     "amenities": ["Garden", "Parking", "Modular Kitchen"],
-    #     "image_url": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea"
-    #   },
-    #   {
-    #     "id": 17,
-    #     "title": "Simple 1 BHK Home",
-    #     "bhk": 1,
-    #     "property_type": "Apartment",
-    #     "rent": 8500,
-    #     "deposit": 20000,
-    #     "furnishing": "Unfurnished",
-    #     "condition": "Average",
-    #     "area_sqft": 580,
-    #     "bedrooms": 1,
-    #     "bathrooms": 1,
-    #     "location": "Ghatlodia",
-    #     "city": "Ahmedabad",
-    #     "available": True,
-    #     "parking": True,
-    #     "balcony": False,
-    #     "pets_allowed": True,
-    #     "floor": 2,
-    #     "total_floors": 5,
-    #     "amenities": ["Parking", "Lift", "Security"],
-    #     "image_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-    #   },
-    #   {
-    #     "id": 18,
-    #     "title": "Premium 3 BHK Apartment",
-    #     "bhk": 3,
-    #     "property_type": "Apartment",
-    #     "rent": 35000,
-    #     "deposit": 100000,
-    #     "furnishing": "Fully Furnished",
-    #     "condition": "Excellent",
-    #     "area_sqft": 1650,
-    #     "bedrooms": 3,
-    #     "bathrooms": 3,
-    #     "location": "Ambawadi",
-    #     "city": "Ahmedabad",
-    #     "available": True,
-    #     "parking": True,
-    #     "balcony": True,
-    #     "pets_allowed": False,
-    #     "floor": 9,
-    #     "total_floors": 15,
-    #     "amenities": ["Gym", "Lift", "Security", "CCTV", "Garden"],
-    #     "image_url": "https://images.unsplash.com/photo-1600607688969-a5bfcd646154"
-    #   },
-    #   {
-    #     "id": 19,
-    #     "title": "Comfortable 2 BHK Flat",
-    #     "bhk": 2,
-    #     "property_type": "Apartment",
-    #     "rent": 16000,
-    #     "deposit": 45000,
-    #     "furnishing": "Unfurnished",
-    #     "condition": "Good",
-    #     "area_sqft": 950,
-    #     "bedrooms": 2,
-    #     "bathrooms": 2,
-    #     "location": "Vastrapur",
-    #     "city": "Ahmedabad",
-    #     "available": True,
-    #     "parking": True,
-    #     "balcony": True,
-    #     "pets_allowed": False,
-    #     "floor": 3,
-    #     "total_floors": 7,
-    #     "amenities": ["Lift", "Security", "CCTV", "Garden"],
-    #     "image_url": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3"
-    #   },
-    #   {
-    #     "id": 20,
-    #     "title": "Brand New 4 BHK Villa",
-    #     "bhk": 4,
-    #     "property_type": "Villa",
-    #     "rent": 55000,
-    #     "deposit": 150000,
-    #     "furnishing": "Semi-Furnished",
-    #     "condition": "Brand New",
-    #     "area_sqft": 2900,
-    #     "bedrooms": 4,
-    #     "bathrooms": 4,
-    #     "location": "South Bopal",
-    #     "city": "Ahmedabad",
-    #     "available": True,
-    #     "parking": True,
-    #     "balcony": True,
-    #     "pets_allowed": True,
-    #     "floor": 2,
-    #     "total_floors": 2,
-    #     "amenities": ["Garden", "Terrace", "Parking", "Security"],
-    #     "image_url": "https://images.unsplash.com/photo-1600585154526-990dced4db0d"
-    #   }
-    ]
-    return render(request, "public-properties.html", {
-        "Flat_Data": Data
-    })
+# ==========================================
+# PROPERTIES
+# ==========================================
 
+def properties(request):
+
+    search_query = request.GET.get("search", "").strip()
+
+    property_list = Property.objects.all().order_by("-created_at")
+
+    if search_query:
+
+        # Normal text search
+        property_list = property_list.filter(
+            Q(title__icontains=search_query)
+            | Q(city__icontains=search_query)
+            | Q(location__icontains=search_query)
+            | Q(property_type__icontains=search_query)
+            | Q(furnishing__icontains=search_query)
+            | Q(condition__icontains=search_query)
+        )
+
+        # 2bhk / 2 bhk / 2 BHK search
+        bhk_number = search_query.lower().replace("bhk", "").strip()
+
+        if bhk_number.isdigit():
+
+            property_list = Property.objects.filter(
+                bhk=int(bhk_number)
+            )
+
+    return render(
+        request,
+        "public-properties.html",
+        {
+            "Flat_Data": property_list,
+            "search_query": search_query,
+        }
+    )
+
+# ==========================================
+# CONTACT
+# ==========================================
 
 def contact(request):
+
+    if request.method == "POST":
+
+        name = request.POST.get("name", "").strip()
+        email = request.POST.get("email", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        subject = request.POST.get("subject", "").strip()
+        message = request.POST.get("message", "").strip()
+
+        ContactInquiry.objects.create(
+            name=name,
+            email=email,
+            phone=phone,
+            subject=subject,
+            message=message,
+        )
+
+        return render(
+            request,
+            "contact.html",
+            {
+                "success": True
+            }
+        )
+
     return render(request, "contact.html")
 
+
+# ==========================================
+# RATING
+# ==========================================
 
 def rating(request):
     return render(request, "rating.html")
 
+
+# ==========================================
+# LOGIN
+# ==========================================
+
 def login(request):
     return render(request, "login.html")
+
+
+# ==========================================
+# IMPORT main.json → DATABASE
+# ==========================================
+
+def import_properties(request):
+
+    json_file = Path(settings.BASE_DIR) / "main.json"
+
+    # Check main.json
+    if not json_file.exists():
+
+        return HttpResponse(
+            "ERROR: main.json file not found."
+        )
+
+    # Read JSON
+    with open(json_file, "r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    # If JSON is a list
+    if isinstance(data, list):
+
+        properties_data = data
+
+    # If JSON is inside a dictionary
+    elif isinstance(data, dict):
+
+        properties_data = (
+            data.get("properties")
+            or data.get("Flat_Data")
+            or data.get("data")
+            or []
+        )
+
+    else:
+
+        return HttpResponse(
+            "ERROR: Invalid JSON format."
+        )
+
+    created = 0
+    updated = 0
+
+    # Import every property
+    for item in properties_data:
+
+        property_obj, was_created = Property.objects.update_or_create(
+
+            json_id=item["id"],
+
+            defaults={
+
+                "title": item.get(
+                    "title",
+                    ""
+                ),
+
+                "bhk": item.get(
+                    "bhk",
+                    2
+                ),
+
+                "property_type": item.get(
+                    "property_type",
+                    "Apartment"
+                ),
+
+                "rent": item.get(
+                    "rent",
+                    0
+                ),
+
+                "deposit": item.get(
+                    "deposit",
+                    0
+                ),
+
+                "furnishing": item.get(
+                    "furnishing",
+                    "Unfurnished"
+                ),
+
+                "condition": item.get(
+                    "condition",
+                    "Good"
+                ),
+
+                "area_sqft": item.get(
+                    "area_sqft",
+                    0
+                ),
+
+                "bedrooms": item.get(
+                    "bedrooms",
+                    item.get("bhk", 2)
+                ),
+
+                "bathrooms": item.get(
+                    "bathrooms",
+                    1
+                ),
+
+                "location": item.get(
+                    "location",
+                    ""
+                ),
+
+                "city": item.get(
+                    "city",
+                    "Ahmedabad"
+                ),
+
+                "available": item.get(
+                    "available",
+                    True
+                ),
+
+                "parking": item.get(
+                    "parking",
+                    False
+                ),
+
+                "balcony": item.get(
+                    "balcony",
+                    False
+                ),
+
+                "pets_allowed": item.get(
+                    "pets_allowed",
+                    False
+                ),
+
+                "floor": item.get(
+                    "floor",
+                    0
+                ),
+
+                "total_floors": item.get(
+                    "total_floors",
+                    1
+                ),
+
+                "amenities": item.get(
+                    "amenities",
+                    []
+                ),
+
+                "image_url": item.get(
+                    "image_url",
+                    ""
+                ),
+            }
+        )
+
+        if was_created:
+            created += 1
+        else:
+            updated += 1
+
+    return HttpResponse(
+        f"""
+        <h1>Property Import Completed</h1>
+
+        <p>New properties created: {created}</p>
+
+        <p>Existing properties updated: {updated}</p>
+
+        <hr>
+
+        <a href="/properties/">
+            Open Properties
+        </a>
+        """
+    )

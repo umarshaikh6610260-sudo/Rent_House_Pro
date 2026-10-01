@@ -2648,3 +2648,25 @@ textarea {
     }
 
 }
+
+.public-header {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.property-card {
+    animation: cardReveal 0.7s ease both;
+}
+
+@keyframes cardReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
