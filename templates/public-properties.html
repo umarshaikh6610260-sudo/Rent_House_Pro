@@ -44,12 +44,14 @@
 
             <input
                 type="search"
+                name="search"
                 id="propertySearch"
                 placeholder="Search properties..."
+                value="{{ search_query }}"
                 autocomplete="off"
             >
 
-            <button
+            <button type="submit" id="searchBtn"
                 type="button"
                 id="searchBtn"
                 aria-label="Search">

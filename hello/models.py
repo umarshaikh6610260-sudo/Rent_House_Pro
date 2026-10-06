@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Property(models.Model):
     json_id = models.PositiveIntegerField(
     unique=True,
